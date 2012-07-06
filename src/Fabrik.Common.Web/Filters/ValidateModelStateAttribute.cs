@@ -17,6 +17,7 @@ namespace Fabrik.Common.Web
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {
                     ProcessAjax(filterContext);
+                    var type = filterContext.ActionParameters["command"].GetType();
                 }
                 else
                 {

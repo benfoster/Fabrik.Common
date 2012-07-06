@@ -16,7 +16,7 @@ namespace Fabrik.Common.Web.Example.Controllers
         [ValidateModelState]
         public ActionResult Index(HomeCommand command)
         {
-            // if we get here, ModelState is invalid
+            // if we get here, ModelState is valid
             // save to db etc.
             return RedirectToAction("index");
         }

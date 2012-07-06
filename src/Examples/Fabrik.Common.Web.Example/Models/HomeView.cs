@@ -24,7 +24,9 @@ namespace Fabrik.Common.Web.Example.Models
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (Age < 60 && SubscriptionType == "Gold")
-                yield return new ValidationResult("Sorry, Gold Subscription are only available if you are over 60.", new[] { "SubscriptionType" });
+                yield return new ValidationResult(
+                    "Sorry, Gold Subscription are only available if you are over 60.", 
+                    new[] { "SubscriptionType" });
         }
     }
 }
