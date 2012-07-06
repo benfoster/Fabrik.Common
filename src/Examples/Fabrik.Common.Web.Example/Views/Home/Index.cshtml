@@ -1,0 +1,98 @@
+﻿@model Fabrik.Common.Web.Example.Models.HomeView
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(function () {
+
+            $.validator.addMethod("failure", function () { return false; }); 
+            $.validator.unobtrusive.adapters.addBool("failure"); 
+            $.validator.unobtrusive.revalidate = function (form, validationResult) { 
+                $.removeData(form[0], 'validator'); 
+                var serverValidationErrors = []; 
+                for (var property in validationResult) { 
+                    var elementId = property.toLowerCase(); 
+                    elementId = elementId.substr(elementId.indexOf('.') + 1); 
+                    var item = form.find('#' + elementId); 
+                    serverValidationErrors.push(item); 
+                    item.attr('data-val-failure', validationResult[property]); 
+                    jQuery.validator.unobtrusive.parseElement(item[0]); 
+                } 
+                form.valid(); 
+                $.removeData(form[0], 'validator'); 
+                $.each(serverValidationErrors, function () { 
+                    this.removeAttr('data-val-failure'); 
+                    jQuery.validator.unobtrusive.parseElement(this[0]); 
+                }); 
+            } 
+
+
+            $("form").submit(function (e) {
+                var $form = $(this);
+                var validator = $form.data("validator");
+
+                if (!validator || !$form.valid())
+                    return;
+                
+                e.preventDefault();
+
+                $.ajax({
+                    url: "@Url.Action("index")",
+                    type: "POST",
+                    data: $form.serialize(),
+                    statusCode: {
+                        400: function(xhr, status, err) {                           
+                            var errors = $.parseJSON(err);
+                            validator.showErrors(errors);
+                            //$.validator.unobtrusive.revalidate($form, errors);
+                        }
+                    },
+                    success: function() {
+                        // clear errors
+
+                        //$form.each(function() { this.reset(); });
+                    }
+                });
+            });
+
+        });
+    
+    </script>
+}
+
+<h2>@Model.Message</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Age)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Age)
+            @Html.ValidationMessageFor(model => model.Age)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SubscriptionType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SubscriptionType, Model.SubscriptionTypes)
+            @Html.ValidationMessageFor(model => model.SubscriptionType)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
