@@ -8,28 +8,6 @@
 
         $(function () {
 
-            $.validator.addMethod("failure", function () { return false; }); 
-            $.validator.unobtrusive.adapters.addBool("failure"); 
-            $.validator.unobtrusive.revalidate = function (form, validationResult) { 
-                $.removeData(form[0], 'validator'); 
-                var serverValidationErrors = []; 
-                for (var property in validationResult) { 
-                    var elementId = property.toLowerCase(); 
-                    elementId = elementId.substr(elementId.indexOf('.') + 1); 
-                    var item = form.find('#' + elementId); 
-                    serverValidationErrors.push(item); 
-                    item.attr('data-val-failure', validationResult[property]); 
-                    jQuery.validator.unobtrusive.parseElement(item[0]); 
-                } 
-                form.valid(); 
-                $.removeData(form[0], 'validator'); 
-                $.each(serverValidationErrors, function () { 
-                    this.removeAttr('data-val-failure'); 
-                    jQuery.validator.unobtrusive.parseElement(this[0]); 
-                }); 
-            } 
-
-
             $("form").submit(function (e) {
                 var $form = $(this);
                 var validator = $form.data("validator");
@@ -47,13 +25,13 @@
                         400: function(xhr, status, err) {                           
                             var errors = $.parseJSON(err);
                             validator.showErrors(errors);
-                            //$.validator.unobtrusive.revalidate($form, errors);
                         }
                     },
                     success: function() {
                         // clear errors
-
-                        //$form.each(function() { this.reset(); });
+                        // validator.resetForm();
+                        // just reload the page for now
+                        location.reload(true);
                     }
                 });
             });
