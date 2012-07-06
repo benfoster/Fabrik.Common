@@ -43,12 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResults\XmlResult.cs" />
+    <Compile Include="Filters\AutoFormatResultAttribute.cs" />
     <Compile Include="Filters\ExportModelStateToTempDataAttribute.cs" />
     <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />
+    <Compile Include="IViewResultFormatter.cs" />
     <Compile Include="Filters\ModelStateTempDataTransfer.cs" />
     <Compile Include="Filters\ValidateModelStateAttribute.cs" />
+    <Compile Include="JsonViewResultFormatter.cs" />
     <Compile Include="ModelStateExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewResultFormatter.cs" />
+    <Compile Include="ViewResultFormatters.cs" />
+    <Compile Include="XmlViewResultFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fabrik.Common\Fabrik.Common.csproj">
@@ -56,6 +63,7 @@
       <Name>Fabrik.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

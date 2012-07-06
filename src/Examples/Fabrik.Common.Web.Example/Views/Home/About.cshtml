@@ -3,6 +3,11 @@
 }
 
 <h2>About</h2>
-<p>
-     Put content here.
-</p>
+
+<h3>Locations</h3>
+
+<ul>
+    @foreach (var location in Model) { 
+        <li>@location</li>
+    }
+</ul>

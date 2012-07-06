@@ -21,9 +21,11 @@ namespace Fabrik.Common.Web.Example.Controllers
             return RedirectToAction("index");
         }
 
+        [AutoFormatResult]
         public ActionResult About()
         {
-            return View();
+            var locations = new[] { "United Kingdom", "Belgium", "United States" };
+            return View(locations);
         }
     }
 
