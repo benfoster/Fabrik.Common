@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -8,6 +9,7 @@ namespace Fabrik.Common.Web
     /// An ActionFilter for automatically validating ModelState before a controller action is executed.
     /// Performs a Redirect if ModelState is invalid. Assumes the <see cref="ImportModelStateFromTempDataAttribute"/> is used on the GET action.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class ValidateModelStateAttribute : ModelStateTempDataTransfer
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -17,7 +19,6 @@ namespace Fabrik.Common.Web
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {
                     ProcessAjax(filterContext);
-                    var type = filterContext.ActionParameters["command"].GetType();
                 }
                 else
                 {

@@ -1,10 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace Fabrik.Common.Web
 {
     /// <summary>
     /// A base class for Action Filters that need to transfer ModelState to/from TempData
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public abstract class ModelStateTempDataTransfer : ActionFilterAttribute
     {
         protected static readonly string Key = typeof(ModelStateTempDataTransfer).FullName;

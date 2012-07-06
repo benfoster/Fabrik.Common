@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace Fabrik.Common.Web
 {
@@ -8,6 +9,7 @@ namespace Fabrik.Common.Web
     /// <remarks>
     /// Useful when following the PRG (Post, Redirect, Get) pattern.
     /// </remarks>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class ExportModelStateToTempDataAttribute : ModelStateTempDataTransfer
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
