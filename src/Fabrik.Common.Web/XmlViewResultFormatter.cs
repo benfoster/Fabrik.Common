@@ -1,9 +1,10 @@
 ﻿using System.Web.Mvc;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Fabrik.Common.Web
 {
+    /// <summary>
+    /// A <see cref="ViewResultFormatter"/> to format the model as XML.
+    /// </summary>
     public class XmlViewResultFormatter : ViewResultFormatter
     {
         public XmlViewResultFormatter()
@@ -18,15 +19,7 @@ namespace Fabrik.Common.Web
             if (model == null)
                 return null;
 
-            var serializer = new XmlSerializer(model.GetType());
-
-            var doc = new XDocument();
-
-            using (var writer = doc.CreateWriter())
-            {
-                serializer.Serialize(writer, model);
-                return new XmlResult(doc);
-            }
+            return new XmlResult(model);
         }
     }
 }

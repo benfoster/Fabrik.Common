@@ -1,23 +1,23 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Web.Mvc;
-using System.Xml;
-using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace Fabrik.Common.Web
 {
+    /// <summary>
+    /// Action result that serializes the specified object into XML and outputs it to the response stream.
+    /// </summary>
     public class XmlResult : ActionResult
     {
-        public XDocument Xml { get; protected set; }
+        public object Data { get; private set; }
         public string ContentType { get; set; }
         public Encoding Encoding { get; set; }
 
-        public XmlResult(XDocument xml)
+        public XmlResult(object objectToSerialize)
         {
-            if (xml == null)
-                throw new ArgumentNullException("xml");
+            Ensure.Argument.NotNull(objectToSerialize, "data");
 
-            Xml = xml;
+            Data = objectToSerialize;
             ContentType = "text/xml";
             Encoding = Encoding.UTF8;
         }
@@ -29,10 +29,8 @@ namespace Fabrik.Common.Web
             response.ContentType = ContentType;
             response.HeaderEncoding = Encoding;
 
-            using (var writer = new XmlTextWriter(response.OutputStream, Encoding.UTF8))
-            {
-                Xml.WriteTo(writer);
-            }
+            var serializer = new XmlSerializer(Data.GetType());
+            serializer.Serialize(response.Output, Data);
         }
     }
 }
