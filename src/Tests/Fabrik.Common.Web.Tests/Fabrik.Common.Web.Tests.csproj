@@ -60,7 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ForceLowercaseUrlModuleTests.cs" />
+    <Compile Include="LowercaseRouteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DynamicHttpContext.cs" />
     <Compile Include="ValidateModelStateAttributeTests.cs" />
     <Compile Include="XmlResultTests.cs" />
   </ItemGroup>

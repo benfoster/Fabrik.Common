@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Xml;
@@ -47,13 +45,7 @@ namespace Fabrik.Common.Web.Tests
         static XmlResult result;
 
         Establish ctx = () => {
-            var httpContext = An<HttpContextBase>();
-            var httpResponse = An<HttpResponseBase>();
-            httpResponse.WhenToldTo(x => x.Output).Return(new StringWriter());
-            httpContext.WhenToldTo(x => x.Response).Return(httpResponse);
-
-            controllerContext = new ControllerContext(httpContext, new RouteData(), An<ControllerBase>());
-
+            controllerContext = new ControllerContext(DynamicHttpContext.Create(), new RouteData(), An<ControllerBase>());
             result = new XmlResult(new Contact { Name = "Ben Foster", Age = 27 });
         };
 
