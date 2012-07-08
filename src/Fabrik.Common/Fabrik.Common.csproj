@@ -49,6 +49,7 @@
     <Compile Include="GuidExtensions.cs" />
     <Compile Include="IOExtensions.cs" />
     <Compile Include="IStartupTask.cs" />
+    <Compile Include="MimeMapping.cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="PathUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

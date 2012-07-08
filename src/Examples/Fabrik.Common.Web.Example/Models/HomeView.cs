@@ -14,6 +14,7 @@ namespace Fabrik.Common.Web.Example.Models
     public class HomeCommand : IValidatableObject
     {
         [Required]
+        [Display(Description = "Your Name")]
         public string Name { get; set; }
 
         [Required]

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -39,6 +36,14 @@ namespace Fabrik.Common.Web.Example
             // use pluggable metadata provider - could do this automatically with an IoC container
             ModelMetadataProviders.Current = 
                 new PluggableModelMetaDataProvider(new[] { new DescriptionAttributeMetadataPlugin() });
+        }
+    }
+
+    public class DescriptionAttributeMetadataPlugin : AttributeMetadataPlugin<DescriptionAttribute>
+    {
+        public override void AssignMetadata(DescriptionAttribute attribute, ModelMetadata metadata)
+        {
+            metadata.Description = (attribute.Description ?? string.Empty).Trim();
         }
     }
 }

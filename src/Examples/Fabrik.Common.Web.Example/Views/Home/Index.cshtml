@@ -42,6 +42,8 @@
 
 <h2>@Model.Message</h2>
 
+<h3>@Html.IfElse(DateTime.UtcNow.Hour < 12, "Good morning!", "Good afternoon!")</h3>
+
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
@@ -51,6 +53,7 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
+            <p>@Html.DescriptionFor(model => model.Name)</p>
         </div>
 
         <div class="editor-label">
