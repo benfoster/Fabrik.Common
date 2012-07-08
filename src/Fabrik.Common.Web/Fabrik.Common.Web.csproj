@@ -58,8 +58,11 @@
     <Compile Include="LowercaseRoute.cs" />
     <Compile Include="ModelBinderMappingDictionary.cs" />
     <Compile Include="ModelStateExtensions.cs" />
+    <Compile Include="NumberRouteConstraint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegexConstraint.cs" />
     <Compile Include="RouteCollectionExtensions.cs" />
+    <Compile Include="SlugRouteConstraint.cs" />
     <Compile Include="ViewResultFormatter.cs" />
     <Compile Include="ViewResultFormatters.cs" />
     <Compile Include="XmlViewResultFormatter.cs" />

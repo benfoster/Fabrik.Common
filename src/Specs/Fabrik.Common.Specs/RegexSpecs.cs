@@ -55,6 +55,41 @@ namespace Fabrik.Common.Specs
         }
     }
 
+    [Subject(typeof(RegexUtils), "SlugWithSegmentsRegex")]
+    public class RegexUtils_SlugWithSegmentsRegex
+    {
+        static bool result;
+        
+        public class When_the_string_is_a_valid_slug
+        {
+            Because of = ()
+                => result = RegexUtils.SlugWithSegmentsRegex.IsMatch("this-is-a-test");
+
+            It Should_match = ()
+                => result.ShouldBeTrue();
+        }
+
+        public class When_the_string_is_a_valid_slug_with_segments
+        {
+            Because of = ()
+                => result = RegexUtils.SlugWithSegmentsRegex.IsMatch("this/is-a/test");
+
+            It Should_match = ()
+                => result.ShouldBeTrue();
+        }
+
+        // edge cases
+
+        public class When_the_string_is_a_valid_slug_with_double_slashes
+        {
+            Because of = ()
+                => result = RegexUtils.SlugWithSegmentsRegex.IsMatch("this/is//a/test");
+
+            It Should_not_match = ()
+                => result.ShouldBeFalse();
+        }
+    }
+
     [Subject(typeof(RegexUtils), "UrlRegex")]
     public class RegexUtils_UrlRegex
     {
@@ -131,6 +166,48 @@ namespace Fabrik.Common.Specs
             Because of = ()
                 => result = RegexUtils.EmailRegex.IsMatch("john@doe.com");
             
+            It Should_match = ()
+                => result.ShouldBeTrue();
+        }
+    }
+
+    [Subject(typeof(RegexUtils), "PositiveNumberRegex")]
+    public class RegexUtils_PositiveNumberRegex
+    {
+        static bool result;
+
+        public class When_the_string_is_not_a_valid_number
+        {
+            Because of = ()
+                => result = RegexUtils.PositiveNumberRegex.IsMatch("test"); 
+
+            It Should_not_match = ()
+                => result.ShouldBeFalse();
+        }
+
+        public class When_the_string_is_a_negative_number
+        {
+            Because of = ()
+                => result = RegexUtils.PositiveNumberRegex.IsMatch("-10");
+
+            It Should_not_match = ()
+                => result.ShouldBeFalse();
+        }
+
+        public class When_the_string_is_zero
+        {
+            Because of = ()
+                => result = RegexUtils.PositiveNumberRegex.IsMatch("0");
+
+            It Should_not_match = ()
+                => result.ShouldBeFalse();
+        }
+
+        public class When_the_string_is_a_number_greater_than_zero
+        {
+            Because of = ()
+                => result = RegexUtils.PositiveNumberRegex.IsMatch("10");
+
             It Should_match = ()
                 => result.ShouldBeTrue();
         }
