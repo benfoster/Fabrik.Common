@@ -35,6 +35,10 @@ namespace Fabrik.Common.Web.Example
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            // use pluggable metadata provider - could do this automatically with an IoC container
+            ModelMetadataProviders.Current = 
+                new PluggableModelMetaDataProvider(new[] { new DescriptionAttributeMetadataPlugin() });
         }
     }
 }
