@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResults\HttpStatusCodeViewResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
     <Compile Include="Filters\AutoFormatResultAttribute.cs" />
     <Compile Include="Filters\ExportModelStateToTempDataAttribute.cs" />
