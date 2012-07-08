@@ -1,9 +1,9 @@
 ﻿using System;
 using Machine.Specifications;
 
-namespace Fabrik.Common.Tests
+namespace Fabrik.Common.Specs
 {
-    [Subject("Ensure.That")]
+    [Subject(typeof(Ensure), "That")]
     public class Ensure_That
     {
         static Exception exception;
@@ -30,7 +30,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("Ensure.That<TException>")]
+    [Subject(typeof(Ensure), "That<TException>")]
     public class Ensure_That_TException
     {
         static Exception exception;
@@ -54,7 +54,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("Ensure.NotNull")]
+    [Subject(typeof(Ensure), "NotNull")]
     public class Ensure_NotNull
     {
         static Exception exception;
@@ -78,7 +78,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("Ensure.Equal<T>")]
+    [Subject(typeof(Ensure), "Equal<T>")]
     public class Ensure_Equal
     {
         static Exception exception;
@@ -105,7 +105,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("Ensure.Contains<T>")]
+    [Subject(typeof(Ensure), "Contains<T>")]
     public class Ensure_Contains
     {
         static Exception exception;
@@ -129,7 +129,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("Ensure.Items<T>")]
+    [Subject(typeof(Ensure), "Items<T>")]
     public class Ensure_Items
     {
         static Exception exception;

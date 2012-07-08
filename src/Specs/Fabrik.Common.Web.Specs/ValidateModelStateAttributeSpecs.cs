@@ -4,10 +4,10 @@ using Machine.Fakes;
 using Machine.Specifications;
 using Machine.Specifications.Mvc;
 
-namespace Fabrik.Common.Web.Tests
+namespace Fabrik.Common.Web.Specs
 {  
-    [Subject(typeof(ValidateModelStateAttribute))]
-    public class ValidateModelStateAttributeTests : WithFakes
+    [Subject(typeof(ValidateModelStateAttribute), "Validating ModelState")]
+    public class ValidateModelStateAttributeSpecs : WithFakes
     {
         static ControllerBase controller;
         static ValidateModelStateAttribute attribute;
@@ -29,7 +29,7 @@ namespace Fabrik.Common.Web.Tests
             attribute = new ValidateModelStateAttribute();
         };
 
-        public class When_model_state_is_valid
+        public class When_the_modelstate_is_valid
         {
             Because of = () =>
                 attribute.OnActionExecuting(actionExecutingContext);
@@ -38,7 +38,7 @@ namespace Fabrik.Common.Web.Tests
                 actionExecutingContext.Result.ShouldBeNull(); // action should be executed normally
         }
 
-        public class When_model_state_is_invalid
+        public class When_the_modelstate_is_invalid
         {
             Establish ctx = ()
                 => controller.ViewData.ModelState.AddModelError("test", "error"); // invalidate modelstate
@@ -46,7 +46,7 @@ namespace Fabrik.Common.Web.Tests
             Because of = () =>
                 attribute.OnActionExecuting(actionExecutingContext);
 
-            It Should_copy_modelstate_to_temp_data = () => {
+            It Should_copy_the_modelstate_to_tempdata = () => {
                 // get modelstate from tempdata
                 var modelState = controller.TempData[typeof(ModelStateTempDataTransfer).FullName] as ModelStateDictionary;
                 modelState["test"].Errors[0].ErrorMessage.ShouldEqual("error");
@@ -56,7 +56,7 @@ namespace Fabrik.Common.Web.Tests
                 actionExecutingContext.Result.ShouldBeARedirectToRoute().And().ActionName().ShouldEqual("index");
         }
 
-        public class When_model_state_is_invalid_and_AJAX_request
+        public class When_the_modelstate_is_invalid_and_it_is_an_AJAX_request
         {
             Establish ctx = () => {
                 // simlulate ajax request
@@ -68,10 +68,10 @@ namespace Fabrik.Common.Web.Tests
             Because of = () => 
                 attribute.OnActionExecuting(actionExecutingContext);
 
-            It Should_return_a_400_error = () => 
+            It Should_return_a_400_bad_request_error = () => 
                 ((HttpStatusCodeResult)actionExecutingContext.Result).StatusCode.ShouldEqual(400);
 
-            It Should_serialize_the_modelstate_errors_as_json = () => 
+            It Should_serialize_the_modelstate_errors_into_JSON = () => 
                 ((HttpStatusCodeResult)actionExecutingContext.Result).StatusDescription.ShouldEqual(@"{""test"":""error""}");
         }
     }  

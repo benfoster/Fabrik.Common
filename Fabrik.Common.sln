@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common", "src\Fabrik.Common\Fabrik.Common.csproj", "{13838B0B-4915-4C59-8AE9-F38A9DFD94F8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BAE286B9-2844-408D-B695-74FA154B4E8E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{BAE286B9-2844-408D-B695-74FA154B4E8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Tests", "src\Tests\Fabrik.Common.Tests\Fabrik.Common.Tests.csproj", "{F2D9D130-76D1-4C0C-88DB-75999D67A7EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Specs", "src\Specs\Fabrik.Common.Specs\Fabrik.Common.Specs.csproj", "{F2D9D130-76D1-4C0C-88DB-75999D67A7EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Web", "src\Fabrik.Common.Web\Fabrik.Common.Web.csproj", "{9E630EBC-9EC3-4AF5-B10E-FB61EA102431}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{2F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Web.Example", "src\Examples\Fabrik.Common.Web.Example\Fabrik.Common.Web.Example.csproj", "{FA2B5E61-E552-434F-B4E0-8287F4A29FDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Web.Tests", "src\Tests\Fabrik.Common.Web.Tests\Fabrik.Common.Web.Tests.csproj", "{7A005F0D-9A2F-456E-B3CD-E889E52EF74C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Web.Specs", "src\Specs\Fabrik.Common.Web.Specs\Fabrik.Common.Web.Specs.csproj", "{7A005F0D-9A2F-456E-B3CD-E889E52EF74C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

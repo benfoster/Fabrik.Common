@@ -1,10 +1,10 @@
 ﻿using System;
 using Machine.Specifications;
 
-namespace Fabrik.Common.Tests
+namespace Fabrik.Common.Specs
 {
-    [Subject("PathUtils.CombinePaths")]
-    public class CombinePaths
+    [Subject(typeof(PathUtils), "CombinePaths")]
+    public class PathUtils_CombinePaths
     {
         static Exception exception;
         static string result;

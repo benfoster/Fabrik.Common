@@ -2,10 +2,10 @@
 using System.Web.Routing;
 using Machine.Specifications;
 
-namespace Fabrik.Common.Web.Tests
+namespace Fabrik.Common.Web.Specs
 {
-    [Subject(typeof(LowercaseRoute))]
-    public class When_generating_an_outbound_url
+    [Subject(typeof(LowercaseRoute), "Generating outbound URLs")]
+    public class When_the_route_values_contain_uppercase_characters
     {       
         static UrlHelper urlHelper;
         static string result;
@@ -22,7 +22,7 @@ namespace Fabrik.Common.Web.Tests
         Because of = () =>
             result = urlHelper.Action("Details", "Products", new { id = "1234", category = "Sport" });
 
-        It Should_be_in_lowercase = ()
+        It Should_convert_them_to_lowercase = ()
             => result.ShouldEqual("/categories/sport/product/1234");
     }
 }

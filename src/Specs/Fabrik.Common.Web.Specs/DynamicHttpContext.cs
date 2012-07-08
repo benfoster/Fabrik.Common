@@ -3,7 +3,7 @@ using System.IO;
 using System.Web;
 using NSubstitute;
 
-namespace Fabrik.Common.Web.Tests
+namespace Fabrik.Common.Web.Specs
 {
     public static class DynamicHttpContext
     {

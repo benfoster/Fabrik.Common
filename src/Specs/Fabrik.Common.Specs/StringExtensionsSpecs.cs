@@ -1,9 +1,9 @@
 ﻿using System;
 using Machine.Specifications;
 
-namespace Fabrik.Common.Tests
+namespace Fabrik.Common.Specs
 {
-    [Subject("String.IsNullOrEmpty")]
+    [Subject(typeof(StringExtensions), "IsNullOrEmpty")]
     public class String_IsNullOrEmpty
     {
         static bool result;
@@ -36,7 +36,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("String.IsNotNullOrEmpty")]
+    [Subject(typeof(StringExtensions), "IsNotNullOrEmpty")]
     public class String_IsNotNullOrEmpty
     {
         static bool result;
@@ -69,7 +69,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("String.FormatWith")]
+    [Subject(typeof(StringExtensions), "FormatWith")]
     public class String_FormatWith
     {
         static string result;
@@ -82,7 +82,7 @@ namespace Fabrik.Common.Tests
             => result.ShouldEqual("One potato, two potato, three potato, four.");
     }
 
-    [Subject("String.NullIfEmpty")]
+    [Subject(typeof(StringExtensions), "NullIfEmpty")]
     public class String_NullIfEmpty
     {
         static string result;
@@ -115,7 +115,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("String.ToSlug")]
+    [Subject(typeof(StringExtensions), "ToSlug")]
     public class String_ToSlug
     {
         static string result;
@@ -169,7 +169,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("String.ToSlug with max length")]
+    [Subject(typeof(StringExtensions), "ToSlug with max length")]
     public class String_ToSlug_with_max_length
     {
         static string result;
@@ -193,7 +193,7 @@ namespace Fabrik.Common.Tests
         }
     }
 
-    [Subject("String.ToSlugWithSegments")]
+    [Subject(typeof(StringExtensions), "ToSlugWithSegments")]
     public class String_ToSlugWithSegments
     {
         static string result;
@@ -223,7 +223,7 @@ namespace Fabrik.Common.Tests
             Because of = ()
                 => result = "// This // actually // happened //".ToSlugWithSegments();
 
-            It Should_remove_them = ()
+            It Should_replace_them_with_single_slashes = ()
                 => result.ShouldEqual("this/actually/happened");
         }
     }
