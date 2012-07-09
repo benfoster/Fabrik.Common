@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertResultSpecs.cs" />
     <Compile Include="ForceLowercaseUrlModuleSpecs.cs" />
     <Compile Include="HttpStatusCodeViewResultSpecs.cs" />
     <Compile Include="LowercaseRouteSpecs.cs" />

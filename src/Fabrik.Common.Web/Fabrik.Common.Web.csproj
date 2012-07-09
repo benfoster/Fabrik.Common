@@ -45,8 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResultExtensions.cs" />
     <Compile Include="ActionResults\AtomResult.cs" />
     <Compile Include="ActionResults\FeedResult.cs" />
+    <Compile Include="ActionResults\AlertResult.cs" />
     <Compile Include="ActionResults\HttpStatusCodeViewResult.cs" />
     <Compile Include="ActionResults\RssFeedResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="Filters\AutoFormatResultAttribute.cs" />
     <Compile Include="Filters\ExportModelStateToTempDataAttribute.cs" />
     <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />
+    <Compile Include="Alert.cs" />
     <Compile Include="ForceLowercaseUrlModule.cs" />
     <Compile Include="HelperPage.cs" />
     <Compile Include="HtmlHelperExtensions.cs" />

@@ -61,7 +61,6 @@ namespace Fabrik.Common.Web.Specs
             response.ApplyAppPathModifier(Arg.Any<string>()).Returns(ctx => ctx.Arg<string>());
             response.OutputStream.Returns(new MemoryStream());
             response.Output.Returns(new StringWriter());
-
             return response;
         }       
     }

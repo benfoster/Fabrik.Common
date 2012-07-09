@@ -18,7 +18,8 @@ namespace Fabrik.Common.Web.Example.Controllers
         {
             // if we get here, ModelState is valid
             // save to db etc.
-            return RedirectToAction("index");
+            return RedirectToAction("index")
+                .AndAlert(AlertType.Success, "Subscription Received.", "Thank you for subscribing, we now have your most personal details. Mwah ha ha ha haaa!");
         }
 
         [AutoFormatResult]
