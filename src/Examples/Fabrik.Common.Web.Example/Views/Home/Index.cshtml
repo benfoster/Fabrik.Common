@@ -8,32 +8,39 @@
 
         $(function () {
 
-            $("form").submit(function (e) {
-                var $form = $(this);
-                var validator = $form.data("validator");
+            $("#ajaxify").click(function() {
 
-                if (!validator || !$form.valid())
-                    return;
+                // hijax the form
+
+                $("form").submit(function (e) {
+                    var $form = $(this);
+                    var validator = $form.data("validator");
+
+                    if (!validator || !$form.valid())
+                        return;
                 
-                e.preventDefault();
+                    e.preventDefault();
 
-                $.ajax({
-                    url: "@Url.Action("index")",
-                    type: "POST",
-                    data: $form.serialize(),
-                    statusCode: {
-                        400: function(xhr, status, err) {                           
-                            var errors = $.parseJSON(err);
-                            validator.showErrors(errors);
+                    $.ajax({
+                        url: "@Url.Action("index")",
+                        type: "POST",
+                        data: $form.serialize(),
+                        statusCode: {
+                            400: function(xhr, status, err) {                           
+                                var errors = $.parseJSON(err);
+                                validator.showErrors(errors);
+                            }
+                        },
+                        success: function() {
+                            // clear errors
+                            // validator.resetForm();
+                            // just reload the page for now
+                            location.reload(true);
                         }
-                    },
-                    success: function() {
-                        // clear errors
-                        // validator.resetForm();
-                        // just reload the page for now
-                        location.reload(true);
-                    }
+                    });
                 });
+
+                alert("Ajaxified!");
             });
         });
     
@@ -69,7 +76,7 @@
             @Html.LabelFor(model => model.SubscriptionType)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.SubscriptionType, Model.SubscriptionTypes)
+            @Html.EnumDropDownListFor(model => model.SubscriptionType)
             @Html.ValidationMessageFor(model => model.SubscriptionType)
         </div>
         <p>
@@ -77,3 +84,7 @@
         </p>
     </fieldset>
 }
+
+<p>
+    <button id="ajaxify">Ajaxify This Form</button>
+</p>

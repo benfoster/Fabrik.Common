@@ -3,6 +3,8 @@ using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Mvc.Html;
+using System.Linq;
 
 namespace Fabrik.Common.Web
 {
@@ -75,6 +77,26 @@ namespace Fabrik.Common.Web
             tb.MergeAttribute("alt", alt);
             tb.MergeAttributes(new RouteValueDictionary(htmlAttributes));
             return MvcHtmlString.Create(tb.ToString(TagRenderMode.SelfClosing));
+        }
+
+        /// <summary>
+        /// Creates a dropdown list for an Enum property
+        /// </summary>
+        /// <exception cref="System.ArgumentException">If the property type is not a valid Enum</exception>
+        public static MvcHtmlString EnumDropDownListFor<TModel, TEnum>(this HtmlHelper<TModel> html, Expression<Func<TModel, TEnum>> expression)
+        {
+            Ensure.Argument.Is(typeof(TEnum).IsEnum, "Must be a valid Enum type.");
+            
+            var metadata = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
+
+            var values = from v in Enum.GetValues(typeof(TEnum)).Cast<TEnum>()
+                         select new {
+                            Text = v.ToString().SeparatePascalCase(),
+                            Value = v.ToString()
+                         };
+
+            var selectList = new SelectList(values, "Value", "Text");
+            return html.DropDownListFor(expression, selectList);
         }
     }
 }

@@ -87,6 +87,20 @@ namespace Fabrik.Common
         }
 
         /// <summary>
+        /// Separates a PascalCase string
+        /// </summary>
+        /// <example>
+        /// "ThisIsPascalCase".SeparatePascalCase(); // returns "This Is Pascal Case"
+        /// </example>
+        /// <param name="value">The value to split</param>
+        /// <returns>The original string separated on each uppercase character.</returns>
+        public static string SeparatePascalCase(this string value) 
+        {
+            Ensure.Argument.NotNullOrEmpty(value, "value");
+            return Regex.Replace(value, "([A-Z])", " $1").Trim();
+        }
+
+        /// <summary>
         /// Credit for this method goes to http://stackoverflow.com/questions/2920744/url-slugify-alrogithm-in-cs
         /// </summary>
         private static string GenerateSlug(string value, int? maxLength = null)

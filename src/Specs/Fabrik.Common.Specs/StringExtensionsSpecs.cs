@@ -227,4 +227,16 @@ namespace Fabrik.Common.Specs
                 => result.ShouldEqual("this/actually/happened");
         }
     }
+
+    [Subject(typeof(StringExtensions), "SeparatePascalCase")]
+    public class When_input_string_is_in_pascal_case
+    {
+        static string result;
+
+        Because of = ()
+            => result = "ThisIsAPascalCase".SeparatePascalCase();
+
+        It Should_split_the_string_on_each_uppercase_character = ()
+            => result.ShouldEqual("This Is A Pascal Case");
+    }
 }

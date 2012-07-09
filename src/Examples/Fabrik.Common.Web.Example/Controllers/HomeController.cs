@@ -33,10 +33,9 @@ namespace Fabrik.Common.Web.Example.Controllers
     {
         public HomeView CreateView()
         {
-            var subscriptionTypes = new SelectList(new[] { "Bronze", "Silver", "Gold" });
             return new HomeView { 
                 Message = "Welcome to ASP.NET MVC!", 
-                SubscriptionTypes = subscriptionTypes
+                SubscriptionType = SubscriptionType.SilverSubscription // default to silver subscription
             };
         }
     }
