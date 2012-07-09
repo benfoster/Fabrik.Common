@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -44,7 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResults\AtomResult.cs" />
+    <Compile Include="ActionResults\FeedResult.cs" />
     <Compile Include="ActionResults\HttpStatusCodeViewResult.cs" />
+    <Compile Include="ActionResults\RssFeedResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
     <Compile Include="AttributeMetadataPlugin.cs" />
     <Compile Include="Filters\AutoFormatResultAttribute.cs" />
@@ -71,6 +75,7 @@
     <Compile Include="RouteCollectionExtensions.cs" />
     <Compile Include="RouteExtensions.cs" />
     <Compile Include="SlugRouteConstraint.cs" />
+    <Compile Include="UrlHelperExtensions.cs" />
     <Compile Include="ViewResultFormatter.cs" />
     <Compile Include="ViewResultFormatters.cs" />
     <Compile Include="XmlViewResultFormatter.cs" />
