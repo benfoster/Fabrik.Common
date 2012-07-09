@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="AlertResultSpecs.cs" />
     <Compile Include="ForceLowercaseUrlModuleSpecs.cs" />
+    <Compile Include="HtmlHelperExtensionsSpecs.cs" />
     <Compile Include="HttpStatusCodeViewResultSpecs.cs" />
     <Compile Include="LowercaseRouteSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

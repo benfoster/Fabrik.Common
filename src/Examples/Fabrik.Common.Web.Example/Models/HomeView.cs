@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Fabrik.Common.Web.Example.Models
 {
     public class HomeView : HomeCommand
     {
         public string Message { get; set; }
+        public SelectList SubscriptionSourcesList { get; set; }
     }
 
     public class HomeCommand : IValidatableObject
@@ -22,6 +24,9 @@ namespace Fabrik.Common.Web.Example.Models
 
         [DisplayName("Subscription")]
         public SubscriptionType SubscriptionType { get; set; }
+
+        [DisplayName("How did you hear about us?")]
+        public IEnumerable<string> SubscriptionSources { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

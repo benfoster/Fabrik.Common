@@ -79,6 +79,14 @@
             @Html.EnumDropDownListFor(model => model.SubscriptionType)
             @Html.ValidationMessageFor(model => model.SubscriptionType)
         </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SubscriptionSources)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxListFor(model => model.SubscriptionSources, Model.SubscriptionSourcesList)
+            @Html.ValidationMessageFor(model => model.SubscriptionSources)
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>
