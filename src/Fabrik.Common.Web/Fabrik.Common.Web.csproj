@@ -53,6 +53,7 @@
     <Compile Include="ActionResults\RssFeedResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
     <Compile Include="AttributeMetadataPlugin.cs" />
+    <Compile Include="DefaultViewFactory.cs" />
     <Compile Include="Filters\AutoFormatResultAttribute.cs" />
     <Compile Include="Filters\ExportModelStateToTempDataAttribute.cs" />
     <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="IGlobalFilterRegistry.cs" />
     <Compile Include="IMetadataPlugin.cs" />
     <Compile Include="IRouteRegistry.cs" />
+    <Compile Include="IViewBuilder.cs" />
+    <Compile Include="IViewFactory.cs" />
     <Compile Include="IViewResultFormatter.cs" />
     <Compile Include="Filters\ModelStateTempDataTransfer.cs" />
     <Compile Include="Filters\ValidateModelStateAttribute.cs" />

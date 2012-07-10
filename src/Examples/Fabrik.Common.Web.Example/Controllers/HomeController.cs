@@ -5,11 +5,17 @@ namespace Fabrik.Common.Web.Example.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IViewFactory viewFactory;
+        
+        public HomeController(IViewFactory viewFactory)
+        {
+            this.viewFactory = viewFactory;
+        }
+        
         [ImportModelStateFromTempData]
         public ActionResult Index()
         {
-            var homeView = new HomeViewFactory().CreateView();            
-            return View(homeView);
+            return View(viewFactory.CreateView<HomeView>());
         }
 
         [HttpPost]
@@ -25,24 +31,12 @@ namespace Fabrik.Common.Web.Example.Controllers
         [AutoFormatResult]
         public ActionResult About()
         {
-            var locations = new[] { "United Kingdom", "Belgium", "United States" };
-            return View(locations);
+            return View(viewFactory.CreateView<AboutView>());
         }
-    }
 
-    public class HomeViewFactory
-    {
-        public HomeView CreateView()
+        public ActionResult List(ListParameters parameters)
         {
-            var sources = new[] { "Google", "TV", "Radio", "A friend", "Crazy bloke down the pub" };
-
-            return new HomeView
-            {
-                Message = "Welcome to ASP.NET MVC!",
-                SubscriptionType = SubscriptionType.SilverSubscription, // default to silver subscription
-                SubscriptionSourcesList = new SelectList(sources),
-                SubscriptionSources = new[] { "Google" } // default to Google selection
-            };
+            return View(viewFactory.CreateView<ListParameters, ListView>(parameters));
         }
     }
 }

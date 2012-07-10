@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Fabrik.Common.Web.Example.Models.AboutView
+@{
     ViewBag.Title = "About Us";
 }
 
@@ -9,7 +10,7 @@
 <h3>Locations</h3>
 
 <ul>
-    @foreach (var location in Model) { 
+    @foreach (var location in Model.Locations) { 
         <li>@location</li>
     }
 </ul>

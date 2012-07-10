@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Web.Mvc;
 using System.Web.Routing;
+using StructureMap;
+using Fabrik.Common.Web.StructureMap;
 
 namespace Fabrik.Common.Web.Example
 {
@@ -28,6 +30,8 @@ namespace Fabrik.Common.Web.Example
 
         protected void Application_Start()
         {
+            BootStructureMap();
+            
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
@@ -36,6 +40,22 @@ namespace Fabrik.Common.Web.Example
             // use pluggable metadata provider - could do this automatically with an IoC container
             ModelMetadataProviders.Current = 
                 new PluggableModelMetaDataProvider(new[] { new DescriptionAttributeMetadataPlugin() });
+        }
+
+        protected static void BootStructureMap()
+        {
+            ObjectFactory.Configure(cfg =>
+            {
+                cfg.For<IViewFactory>().Use<DefaultViewFactory>();
+
+                cfg.Scan(scan =>
+                {
+                    scan.TheCallingAssembly();
+                    scan.ConnectImplementationsToTypesClosing(typeof(IViewBuilder<>));
+                });
+            });
+            
+            DependencyResolver.SetResolver(new StructureMapDependencyResolver(ObjectFactory.Container));
         }
     }
 

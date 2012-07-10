@@ -35,6 +35,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="StructureMap">
+      <HintPath>..\..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -59,13 +62,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\HomeViewBuilder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AboutView.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\HomeView.cs" />
+    <Compile Include="Models\ListView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +122,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fabrik.Common.Web.StructureMap\Fabrik.Common.Web.StructureMap.csproj">
+      <Project>{D580B3DE-7ADF-4318-B246-B0D66EC52FA6}</Project>
+      <Name>Fabrik.Common.Web.StructureMap</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fabrik.Common.Web\Fabrik.Common.Web.csproj">
       <Project>{9E630EBC-9EC3-4AF5-B10E-FB61EA102431}</Project>
       <Name>Fabrik.Common.Web</Name>
@@ -127,6 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Alert.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\List.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
