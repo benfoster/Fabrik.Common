@@ -23,14 +23,25 @@ namespace Fabrik.Common.Web
 
         public override void ExecuteResult(ControllerContext context)
         {
-            var httpContext = context.HttpContext;
-            var response = httpContext.Response;
+            var request = context.HttpContext.Request;
 
-            response.TrySkipIisCustomErrors = true;
-            response.StatusCode = (int)statusCode;
-            response.StatusDescription = description;
+            if (request.IsAjaxRequest())
+            {
+                // for ajax requests just return a standard HttpStatusCodeResult
+                var result = new HttpStatusCodeResult((int)statusCode, description);
+                result.ExecuteResult(context);
+            }
+            else
+            {
+                var httpContext = context.HttpContext;
+                var response = httpContext.Response;
 
-            base.ExecuteResult(context);
+                response.TrySkipIisCustomErrors = true;
+                response.StatusCode = (int)statusCode;
+                response.StatusDescription = description;
+
+                base.ExecuteResult(context);
+            }
         }
     }
 }

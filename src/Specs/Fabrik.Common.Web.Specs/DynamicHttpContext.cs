@@ -1,5 +1,6 @@
 ﻿using System.Collections.Specialized;
 using System.IO;
+using System.Text;
 using System.Web;
 using NSubstitute;
 
@@ -57,11 +58,19 @@ namespace Fabrik.Common.Web.Specs
         
         private static HttpResponseBase SetupResponse()
         {
+            var sb = new StringBuilder();
+            var writer = new StringWriter(sb);
             var response = Substitute.For<HttpResponseBase>();
             response.ApplyAppPathModifier(Arg.Any<string>()).Returns(ctx => ctx.Arg<string>());
             response.OutputStream.Returns(new MemoryStream());
-            response.Output.Returns(new StringWriter());
+            response.Output.Returns(writer);
+            response.When(x => x.Write(Arg.Any<string>())).Do(ctx => writer.Write(ctx.Arg<string>()));
             return response;
-        }       
+        }  
+     
+        public static void SetupAjaxRequest(this HttpContextBase httpContext) 
+        {
+            httpContext.Request["X-Requested-With"].Returns("XMLHttpRequest");
+        }
     }
 }

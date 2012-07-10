@@ -60,7 +60,7 @@ namespace Fabrik.Common.Web.Specs
         {
             Establish ctx = () => {
                 // simlulate ajax request
-                actionExecutingContext.HttpContext.Request.WhenToldTo(x => x["X-Requested-With"]).Return("XMLHttpRequest");
+                actionExecutingContext.HttpContext.SetupAjaxRequest();
                 // invalidate modelstate
                 controller.ViewData.ModelState.AddModelError("test", "error");
             };

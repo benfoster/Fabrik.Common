@@ -31,7 +31,7 @@ namespace Fabrik.Common.Web.Specs
             };
 
             It Should_return_the_original_result_without_modification = () => {
-                controllerContext.HttpContext.Response.WasToldTo(x => x.Write("Test"));
+                controllerContext.HttpContext.Response.Output.ToString().ShouldEqual("Test");
                 controllerContext.HttpContext.Response.ContentType.ShouldEqual("text/plain");
             };
         }

@@ -38,5 +38,10 @@ namespace Fabrik.Common.Web.Example.Controllers
         {
             return View(viewFactory.CreateView<ListParameters, ListView>(parameters));
         }
+
+        public ActionResult NotFound()
+        {
+            return new HttpStatusCodeViewResult(System.Net.HttpStatusCode.NotFound, "Not Found");
+        }
     }
 }
