@@ -1,7 +1,4 @@
-﻿@{
-    var alert = TempData[typeof(Alert).FullName] as Alert;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,7 +27,7 @@
             </nav>
         </header>
         <section id="main">
-            @Html.If(alert != null, html => html.Partial("_alert", alert))
+            @Html.Alert()
             @RenderBody()
         </section>
         <footer>

@@ -177,5 +177,17 @@ namespace Fabrik.Common.Web
 
             return htmlHelper.TextBoxFor(expression, new { autocomplete = "off", data_provide = "typeahead", data_items = items, data_source = jsonString });
         }
+
+        /// <summary>
+        /// Renders an Alert if one exists in TempData (requires a partial view named _Alert)
+        /// </summary>
+        public static MvcHtmlString Alert(this HtmlHelper html)
+        {
+            var alert = html.ViewContext.TempData[typeof(Alert).FullName] as Alert;
+            if (alert != null)
+                return html.Partial("_Alert", alert);
+
+            return MvcHtmlString.Empty;
+        }
     }
 }

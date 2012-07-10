@@ -7,13 +7,18 @@ namespace Fabrik.Common.Web.Example.Models
     {
         private readonly ListParameters parameters;
 
-        public IEnumerable<Product> Products { get; set; }
+        public List<Product> Products { get; set; }
+
+        public ListView()
+        {
+
+        }
 
         public ListView(ListParameters parameters)
         {
             this.parameters = parameters;
             var skip = (parameters.Page - 1) * parameters.Size;
-            Products = GetAllProducts().Skip(skip).Take(parameters.Size);
+            Products = GetAllProducts().Skip(skip).Take(parameters.Size).ToList();
         }
 
         private IEnumerable<Product> GetAllProducts()

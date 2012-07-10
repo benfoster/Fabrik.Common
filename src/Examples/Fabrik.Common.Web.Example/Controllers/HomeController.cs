@@ -12,28 +12,28 @@ namespace Fabrik.Common.Web.Example.Controllers
             this.viewFactory = viewFactory;
         }
         
-        [ImportModelStateFromTempData]
+        [HttpGet, ImportModelStateFromTempData]
         public ActionResult Index()
         {
             return View(viewFactory.CreateView<HomeView>());
         }
 
-        [HttpPost]
-        [ValidateModelState]
+        [HttpPost, ValidateModelState, AjaxAware]
         public ActionResult Index(HomeCommand command)
         {
             // if we get here, ModelState is valid
             // save to db etc.
             return RedirectToAction("index")
-                .AndAlert(AlertType.Success, "Subscription Received.", "Thank you for subscribing, we now have your most personal details. Mwah ha ha ha haaa!");
+                .AndAlert(this, AlertType.Success, "Subscription Received.", "Thank you for subscribing, we now have your most personal details. Mwah ha ha ha haaa!");
         }
 
-        [AutoFormatResult]
+        [AutoFormatResult, AjaxAware]
         public ActionResult About()
         {
             return View(viewFactory.CreateView<AboutView>());
         }
 
+        [AutoFormatResult, AjaxAware]
         public ActionResult List(ListParameters parameters)
         {
             return View(viewFactory.CreateView<ListParameters, ListView>(parameters));

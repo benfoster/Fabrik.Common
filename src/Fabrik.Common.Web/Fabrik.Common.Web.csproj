@@ -46,14 +46,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionResultExtensions.cs" />
+    <Compile Include="ActionResults\AjaxAwareRedirectResult.cs" />
+    <Compile Include="ActionResults\AjaxAwareRedirectToRouteResult.cs" />
+    <Compile Include="ActionResults\AjaxAndChildActionAwareViewResult.cs" />
     <Compile Include="ActionResults\AtomResult.cs" />
     <Compile Include="ActionResults\FeedResult.cs" />
     <Compile Include="ActionResults\AlertResult.cs" />
     <Compile Include="ActionResults\HttpStatusCodeViewResult.cs" />
+    <Compile Include="ActionResults\JavaScriptRedirectResult.cs" />
     <Compile Include="ActionResults\RssFeedResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
     <Compile Include="AttributeMetadataPlugin.cs" />
     <Compile Include="DefaultViewFactory.cs" />
+    <Compile Include="Filters\AjaxAwareAttribute.cs" />
     <Compile Include="Filters\AutoFormatResultAttribute.cs" />
     <Compile Include="Filters\ExportModelStateToTempDataAttribute.cs" />
     <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />

@@ -1,12 +1,6 @@
 ﻿@model Fabrik.Common.Web.Example.Models.ListView
 @{
-    ViewBag.Title = "About Us";
+    ViewBag.Title = "Products";
 }
 
-<h2>Products</h2>
-
-<ul>
-    @foreach (var product in Model.Products) { 
-        <li>@product.Name : @product.Price.ToString("c")</li>
-    }
-</ul>
+@Html.Partial("_List")

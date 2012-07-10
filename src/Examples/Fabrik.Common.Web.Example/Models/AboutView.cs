@@ -4,11 +4,11 @@ namespace Fabrik.Common.Web.Example.Models
 {
     public class AboutView
     {
-        public IEnumerable<string> Locations { get; set; }
+        public List<string> Locations { get; set; }
         
         public AboutView()
         {
-            Locations = new[] { "United Kingdom", "Belgium", "United States" };
+            Locations = new List<string>(new[] { "United Kingdom", "Belgium", "United States" });
         }
     }
 }
