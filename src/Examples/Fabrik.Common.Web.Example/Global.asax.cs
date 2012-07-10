@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Web.Mvc;
 using System.Web.Routing;
-using StructureMap;
 using Fabrik.Common.Web.StructureMap;
+using StructureMap;
 
 namespace Fabrik.Common.Web.Example
 {
@@ -52,6 +52,7 @@ namespace Fabrik.Common.Web.Example
                 {
                     scan.TheCallingAssembly();
                     scan.ConnectImplementationsToTypesClosing(typeof(IViewBuilder<>));
+                    scan.ConnectImplementationsToTypesClosing(typeof(IViewBuilder<,>));
                 });
             });
             

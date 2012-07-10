@@ -27,16 +27,22 @@ namespace Fabrik.Common.Web.Example.Controllers
                 .AndAlert(this, AlertType.Success, "Subscription Received.", "Thank you for subscribing, we now have your most personal details. Mwah ha ha ha haaa!");
         }
 
-        [AutoFormatResult, AjaxAware]
+        [HttpGet, AutoFormatResult, AjaxAware]
         public ActionResult About()
         {
             return View(viewFactory.CreateView<AboutView>());
         }
 
-        [AutoFormatResult, AjaxAware]
+        [HttpGet, AutoFormatResult, AjaxAware]
         public ActionResult List(ListParameters parameters)
         {
             return View(viewFactory.CreateView<ListParameters, ListView>(parameters));
+        }
+
+        [HttpGet, AutoFormatResult, AjaxAware, NullModelReturns404("Product not found.")]
+        public ActionResult Details(int id)
+        {
+            return View(viewFactory.CreateView<int, ProductDetailsView>(id));
         }
 
         public ActionResult NotFound()

@@ -17,7 +17,10 @@ namespace Fabrik.Common.Web
             var formatter = ViewResultFormatters.GetFormatter(filterContext.HttpContext);
             if (formatter != null)
             {
-                filterContext.Result = formatter.CreateResult(filterContext);
+                var result = formatter.CreateResult(filterContext);
+
+                if (result != null)
+                    filterContext.Result = result;
             }
             
             base.OnActionExecuted(filterContext);

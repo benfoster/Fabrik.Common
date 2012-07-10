@@ -23,9 +23,9 @@ namespace Fabrik.Common.Web
 
         protected static void ConvertResultIf<TResult>(ActionExecutedContext filterContext, Func<TResult, ActionResult> converter) where TResult : ActionResult
         {
-            if (filterContext.Result is TResult)
-            {               
-                filterContext.Result = converter(filterContext.Result as TResult);
+            if (filterContext.Result.GetType() == typeof(TResult))
+            {
+                filterContext.Result = converter((TResult)filterContext.Result);
             }
         }
     }
