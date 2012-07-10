@@ -29,14 +29,16 @@ namespace Fabrik.Common.Web
                 if (viewName.IsNullOrEmpty())
                     throw new InvalidOperationException("View name cannot be null.");
 
-                // add prefix 
                 var partialViewName = string.Concat(partialViewPrefix, viewName);
+
+                // check if partial exists, otherwise we'll use the same view
+                var partialExists = viewResult.ViewEngineCollection.FindPartialView(context, partialViewName).View != null;
 
                 var partialViewResult = new PartialViewResult
                 {
                     ViewData = viewResult.ViewData,
                     TempData = viewResult.TempData,
-                    ViewName = partialViewName,
+                    ViewName = partialExists ? partialViewName : viewName,
                     ViewEngineCollection = viewResult.ViewEngineCollection,
                 };
 
