@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
+using System.Web.Script.Serialization;
 
 namespace Fabrik.Common.Web
 {
@@ -110,7 +111,7 @@ namespace Fabrik.Common.Web
             var listName = ExpressionHelper.GetExpressionText(expression);
             var metaData = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
 
-            items = GetCheckboxListWithDefaultValue(metaData.Model, items);
+            items = GetCheckboxListWithDefaultValues(metaData.Model, items);
             return htmlHelper.CheckBoxList(listName, items, htmlAttributes);
         }
 
@@ -141,14 +142,14 @@ namespace Fabrik.Common.Web
             return new MvcHtmlString(container.ToString());
         }
 
-        private static IEnumerable<SelectListItem> GetCheckboxListWithDefaultValue(object defaultValue, IEnumerable<SelectListItem> selectList)
+        private static IEnumerable<SelectListItem> GetCheckboxListWithDefaultValues(object defaultValues, IEnumerable<SelectListItem> selectList)
         {
-            var defaultValues = defaultValue as IEnumerable;
+            var defaultValuesList = defaultValues as IEnumerable;
 
-            if (defaultValues == null)
+            if (defaultValuesList == null)
                 return selectList;
 
-            IEnumerable<string> values = from object value in defaultValues
+            IEnumerable<string> values = from object value in defaultValuesList
                                          select Convert.ToString(value, CultureInfo.CurrentCulture);
             
             var selectedValues = new HashSet<string>(values, StringComparer.OrdinalIgnoreCase);
@@ -161,6 +162,20 @@ namespace Fabrik.Common.Web
             });
 
             return newSelectList;
+        }
+
+        /// <summary>
+        /// A helper for wiring up Twitter bootstrap's Typeahead component.
+        /// </summary>
+        /// <param name="items">The list to be serialized as JSON and assigned to the data-items attribute of the textbox</param>
+        public static MvcHtmlString TypeaheadFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, IEnumerable<string> source, int items = 8)
+        {
+            Ensure.Argument.NotNull(expression, "expression");
+            Ensure.Argument.NotNull(source, "source");
+
+            var jsonString = new JavaScriptSerializer().Serialize(source);
+
+            return htmlHelper.TextBoxFor(expression, new { autocomplete = "off", data_provide = "typeahead", data_items = items, data_source = jsonString });
         }
     }
 }
