@@ -21,11 +21,14 @@ namespace Fabrik.Common.Web
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var result = filterContext.Result as ViewResult;
+            var result = filterContext.Result as ViewResultBase;
 
             if (result != null && result.Model == null)
             {
-                filterContext.Result = new HttpStatusCodeViewResult(ViewName, HttpStatusCode.NotFound, Description);
+                if (result is PartialViewResult)
+                    filterContext.Result = new HttpStatusCodePartialViewResult(ViewName, HttpStatusCode.NotFound, Description);
+                else
+                    filterContext.Result = new HttpStatusCodeViewResult(ViewName, HttpStatusCode.NotFound, Description);
             }
             
             base.OnActionExecuted(filterContext);

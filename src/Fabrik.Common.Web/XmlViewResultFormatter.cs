@@ -3,9 +3,9 @@
 namespace Fabrik.Common.Web
 {
     /// <summary>
-    /// A <see cref="ViewResultFormatter"/> to format the model as XML.
+    /// A <see cref="MediaTypeViewResultFormatter"/> to format the model as XML.
     /// </summary>
-    public class XmlViewResultFormatter : ViewResultFormatter
+    public class XmlViewResultFormatter : MediaTypeViewResultFormatter
     {
         public XmlViewResultFormatter()
         {

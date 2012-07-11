@@ -42,7 +42,7 @@ namespace Fabrik.Common.Web.Specs
             }
         }
 
-        [Subject(typeof(XmlResult), "Executing the result")]
+        [Subject(typeof(XmlResult))]
         public class When_executing_the_result : WithFakes
         {
             static ControllerContext controllerContext;

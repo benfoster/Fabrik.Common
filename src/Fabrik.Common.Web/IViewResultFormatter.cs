@@ -5,7 +5,7 @@ namespace Fabrik.Common.Web
 {
     public interface IViewResultFormatter
     {
-        bool IsSatisfiedBy(HttpContextBase httpContext);
-        ActionResult CreateResult(ControllerContext controllerContext);
+        bool IsSatisfiedBy(ControllerContext controllerContext);
+        ActionResult CreateResult(ControllerContext controllerContext, ActionResult currentResult);
     }
 }

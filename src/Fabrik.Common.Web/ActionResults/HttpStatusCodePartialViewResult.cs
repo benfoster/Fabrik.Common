@@ -4,17 +4,17 @@ using System.Web.Mvc;
 namespace Fabrik.Common.Web
 {
     /// <summary>
-    /// An action result that returns a View for a specific HTTP status code.
+    /// An action result that returns a Partial View for a specific HTTP status code.
     /// </summary>
-    public class HttpStatusCodeViewResult : ViewResult
+    public class HttpStatusCodePartialViewResult : PartialViewResult
     {
         private readonly HttpStatusCode statusCode;
         private readonly string description;
 
-        public HttpStatusCodeViewResult(HttpStatusCode statusCode, string description = null) :
+        public HttpStatusCodePartialViewResult(HttpStatusCode statusCode, string description = null) :
             this(null, statusCode, description) { }
 
-        public HttpStatusCodeViewResult(string viewName, HttpStatusCode statusCode, string description = null)
+        public HttpStatusCodePartialViewResult(string viewName, HttpStatusCode statusCode, string description = null)
         {           
             this.statusCode = statusCode;
             this.description = description;

@@ -40,6 +40,9 @@ namespace Fabrik.Common.Web.Example
             // use pluggable metadata provider - could do this automatically with an IoC container
             ModelMetadataProviders.Current = 
                 new PluggableModelMetaDataProvider(new[] { new DescriptionAttributeMetadataPlugin() });
+
+            // set up partial view formatter
+            ViewResultFormatters.Formatters.Add(new PartialViewResultFormatter());
         }
 
         protected static void BootStructureMap()

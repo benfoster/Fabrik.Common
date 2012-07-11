@@ -47,9 +47,8 @@
   <ItemGroup>
     <Compile Include="ActionResultExtensions.cs" />
     <Compile Include="ActionResults\AjaxAwareRedirectResult.cs" />
-    <Compile Include="ActionResults\AjaxAwareRedirectToRouteResult.cs" />
-    <Compile Include="ActionResults\AjaxAndChildActionAwareViewResult.cs" />
     <Compile Include="ActionResults\AtomResult.cs" />
+    <Compile Include="ActionResults\HttpStatusCodePartialViewResult.cs" />
     <Compile Include="ActionResults\FeedResult.cs" />
     <Compile Include="ActionResults\AlertResult.cs" />
     <Compile Include="ActionResults\HttpStatusCodeViewResult.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="AttributeMetadataPlugin.cs" />
     <Compile Include="DefaultViewFactory.cs" />
     <Compile Include="Filters\NullModelReturns404Attribute.cs" />
-    <Compile Include="Filters\AjaxAwareAttribute.cs" />
     <Compile Include="Filters\AutoFormatResultAttribute.cs" />
     <Compile Include="Filters\ExportModelStateToTempDataAttribute.cs" />
     <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />
@@ -81,6 +79,7 @@
     <Compile Include="ModelBinderMappingDictionary.cs" />
     <Compile Include="ModelStateExtensions.cs" />
     <Compile Include="NumberRouteConstraint.cs" />
+    <Compile Include="PartialViewResultFormatter.cs" />
     <Compile Include="PluggableModelMetaDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexConstraint.cs" />
@@ -88,7 +87,7 @@
     <Compile Include="RouteExtensions.cs" />
     <Compile Include="SlugRouteConstraint.cs" />
     <Compile Include="UrlHelperExtensions.cs" />
-    <Compile Include="ViewResultFormatter.cs" />
+    <Compile Include="MediaTypeViewResultFormatter.cs" />
     <Compile Include="ViewResultFormatters.cs" />
     <Compile Include="XmlViewResultFormatter.cs" />
   </ItemGroup>

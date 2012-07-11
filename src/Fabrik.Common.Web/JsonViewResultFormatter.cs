@@ -2,7 +2,7 @@
 
 namespace Fabrik.Common.Web
 {
-    public class JsonViewResultFormatter : ViewResultFormatter
+    public class JsonViewResultFormatter : MediaTypeViewResultFormatter
     {
         public JsonViewResultFormatter()
         {

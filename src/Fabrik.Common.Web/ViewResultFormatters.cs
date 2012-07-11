@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Fabrik.Common.Web
 {
@@ -15,11 +16,11 @@ namespace Fabrik.Common.Web
             Formatters.Add(new XmlViewResultFormatter());
         }
 
-        public static IViewResultFormatter GetFormatter(HttpContextBase httpContext)
+        public static IViewResultFormatter GetFormatter(ControllerContext controllerContext)
         {
             foreach (var formatter in Formatters)
             {
-                if (formatter.IsSatisfiedBy(httpContext))
+                if (formatter.IsSatisfiedBy(controllerContext))
                     return formatter;
             }
 

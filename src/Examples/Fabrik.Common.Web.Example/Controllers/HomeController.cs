@@ -18,28 +18,28 @@ namespace Fabrik.Common.Web.Example.Controllers
             return View(viewFactory.CreateView<HomeView>());
         }
 
-        [HttpPost, ValidateModelState, AjaxAware]
+        [HttpPost, ValidateModelState]
         public ActionResult Index(HomeCommand command)
         {
             // if we get here, ModelState is valid
             // save to db etc.
-            return RedirectToAction("index")
+            return new AjaxAwareRedirectResult(Url.Action("index"))
                 .AndAlert(this, AlertType.Success, "Subscription Received.", "Thank you for subscribing, we now have your most personal details. Mwah ha ha ha haaa!");
         }
 
-        [HttpGet, AutoFormatResult, AjaxAware]
+        [HttpGet, AutoFormatResult]
         public ActionResult About()
         {
             return View(viewFactory.CreateView<AboutView>());
         }
 
-        [HttpGet, AutoFormatResult, AjaxAware]
+        [HttpGet, AutoFormatResult]
         public ActionResult List(ListParameters parameters)
         {
             return View(viewFactory.CreateView<ListParameters, ListView>(parameters));
         }
 
-        [HttpGet, AutoFormatResult, AjaxAware, NullModelReturns404("Product not found.")]
+        [HttpGet, NullModelReturns404("Product not found."), AutoFormatResult]
         public ActionResult Details(int id)
         {
             return View(viewFactory.CreateView<int, ProductDetailsView>(id));
