@@ -69,6 +69,7 @@
     <Compile Include="DynamicHttpContext.cs" />
     <Compile Include="ValidateModelStateAttributeSpecs.cs" />
     <Compile Include="DefaultViewFactorySpecs.cs" />
+    <Compile Include="AutoFormatAttributeSpecs.cs" />
     <Compile Include="XmlResultSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
