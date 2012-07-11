@@ -57,7 +57,7 @@
     <Compile Include="ActionResults\XmlResult.cs" />
     <Compile Include="AttributeMetadataPlugin.cs" />
     <Compile Include="DefaultViewFactory.cs" />
-    <Compile Include="Filters\NullModelReturns404Attribute.cs" />
+    <Compile Include="Filters\NullModelCheckAttribute.cs" />
     <Compile Include="Filters\AutoFormatResultAttribute.cs" />
     <Compile Include="Filters\ExportModelStateToTempDataAttribute.cs" />
     <Compile Include="Filters\ImportModelStateFromTempDataAttribute.cs" />

@@ -39,7 +39,7 @@ namespace Fabrik.Common.Web.Example.Controllers
             return View(viewFactory.CreateView<ListParameters, ListView>(parameters));
         }
 
-        [HttpGet, NullModelReturns404("Product not found."), AutoFormatResult]
+        [HttpGet, NullModelCheck("Product not found."), AutoFormatResult]
         public ActionResult Details(int id)
         {
             return View(viewFactory.CreateView<int, ProductDetailsView>(id));
