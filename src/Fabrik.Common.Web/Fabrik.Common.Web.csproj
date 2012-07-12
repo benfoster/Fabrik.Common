@@ -58,6 +58,7 @@
     <Compile Include="ActionResults\XmlResult.cs" />
     <Compile Include="AttributeMetadataPlugin.cs" />
     <Compile Include="DefaultViewFactory.cs" />
+    <Compile Include="Filters\InjectPageMetadataAttribute.cs" />
     <Compile Include="Filters\NullModelCheckAttribute.cs" />
     <Compile Include="Filters\AutoFormatResultAttribute.cs" />
     <Compile Include="Filters\ExportModelStateToTempDataAttribute.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="ModelBinderMappingDictionary.cs" />
     <Compile Include="ModelStateExtensions.cs" />
     <Compile Include="NumberRouteConstraint.cs" />
+    <Compile Include="PageMetadata.cs" />
     <Compile Include="PartialViewResultFormatter.cs" />
     <Compile Include="PluggableModelMetaDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

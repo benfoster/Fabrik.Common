@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Fabrik.Common.Web.Example.Models
 {
-    public class ListView
+    public class ListView : PageMetadata
     {
         private readonly ListParameters parameters;
 
@@ -19,6 +19,30 @@ namespace Fabrik.Common.Web.Example.Models
             this.parameters = parameters;
             var skip = (parameters.Page - 1) * parameters.Size;
             Products = GetAllProducts().Skip(skip).Take(parameters.Size).ToList();
+        }
+
+        public override string MetaDescription
+        {
+            get
+            {
+                return "Products Description";
+            }
+        }
+
+        public override string MetaKeywords
+        {
+            get
+            {
+                return "Products, Stuff, Monies";
+            }
+        }
+
+        public override string PageTitle
+        {
+            get
+            {
+                return "Products";
+            }
         }
 
         private IEnumerable<Product> GetAllProducts()

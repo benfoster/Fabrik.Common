@@ -14,6 +14,7 @@ namespace Fabrik.Common.Web.Example
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new InjectPageMetadataAttribute());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
