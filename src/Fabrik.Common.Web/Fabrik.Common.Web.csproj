@@ -88,6 +88,11 @@
     <Compile Include="RegexConstraint.cs" />
     <Compile Include="RouteCollectionExtensions.cs" />
     <Compile Include="RouteExtensions.cs" />
+    <Compile Include="SEO\SitemapChangeFrequency.cs" />
+    <Compile Include="SEO\ISitemapGenerator.cs" />
+    <Compile Include="SEO\ISitemapItem.cs" />
+    <Compile Include="SEO\SitemapGenerator.cs" />
+    <Compile Include="SEO\SitemapItem.cs" />
     <Compile Include="SlugRouteConstraint.cs" />
     <Compile Include="UrlHelperExtensions.cs" />
     <Compile Include="MediaTypeViewResultFormatter.cs" />

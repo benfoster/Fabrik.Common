@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel.Syndication;
 
-namespace Fabrik.Common.Web.ActionResults
+namespace Fabrik.Common.Web
 {
     /// <summary>
     /// An ActionResult for returning Atom feeds
