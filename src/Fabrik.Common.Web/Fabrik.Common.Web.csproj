@@ -92,6 +92,10 @@
     <Compile Include="UrlHelperExtensions.cs" />
     <Compile Include="MediaTypeViewResultFormatter.cs" />
     <Compile Include="Validation\MandatoryAttribute.cs" />
+    <Compile Include="ViewEngines\BuildManager.cs" />
+    <Compile Include="ViewEngines\ThemeableBuildManagerViewEngine.cs" />
+    <Compile Include="ViewEngines\ThemeableRazorViewEngine.cs" />
+    <Compile Include="ViewEngines\ThemeableVirtualPathProviderViewEngine.cs" />
     <Compile Include="ViewResultFormatters.cs" />
     <Compile Include="XmlViewResultFormatter.cs" />
   </ItemGroup>
