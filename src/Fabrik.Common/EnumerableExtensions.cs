@@ -31,9 +31,9 @@ namespace Fabrik.Common
         /// <summary>
         /// Convenience method for retrieving a specific page of items within a collection.
         /// </summary>
-        /// <param name="pageSize">The size of the pages.</param>
         /// <param name="pageIndex">The index of the page to get.</param>
-        public static IEnumerable<T> GetPage<T>(this IEnumerable<T> source, int pageSize, int pageIndex)
+        /// <param name="pageSize">The size of the pages.</param>
+        public static IEnumerable<T> GetPage<T>(this IEnumerable<T> source, int pageIndex, int pageSize)
         {
             return source.Skip(pageIndex * pageSize).Take(pageSize);
         }
