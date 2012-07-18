@@ -17,7 +17,7 @@ namespace Fabrik.Common.Web
             var description = viewResult.ViewBag.MetaDescription ?? settings["MetaDescription"];
             var keywords = viewResult.ViewBag.MetaKeywords ?? settings["MetaKeywords"];
 
-            var metadata = viewResult.Model as PageMetadata;
+            var metadata = viewResult.Model as IPageMetadata;
 
             if (metadata != null)
             {

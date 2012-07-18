@@ -71,6 +71,7 @@
     <Compile Include="HttpPostedFileBaseExtensions.cs" />
     <Compile Include="IGlobalFilterRegistry.cs" />
     <Compile Include="IMetadataPlugin.cs" />
+    <Compile Include="IPageMetadata.cs" />
     <Compile Include="IRouteRegistry.cs" />
     <Compile Include="IViewBuilder.cs" />
     <Compile Include="IViewFactory.cs" />
