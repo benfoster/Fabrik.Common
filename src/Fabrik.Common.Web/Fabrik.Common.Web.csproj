@@ -68,6 +68,7 @@
     <Compile Include="HelperPage.cs" />
     <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="HttpModuleBase.cs" />
+    <Compile Include="HttpPostedFileBaseExtensions.cs" />
     <Compile Include="IGlobalFilterRegistry.cs" />
     <Compile Include="IMetadataPlugin.cs" />
     <Compile Include="IRouteRegistry.cs" />
