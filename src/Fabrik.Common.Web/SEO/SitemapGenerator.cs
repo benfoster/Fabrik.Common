@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
+using System.Web;
+using System;
 
 namespace Fabrik.Common.Web
 {   
@@ -32,7 +34,7 @@ namespace Fabrik.Common.Web
         }
 
         private XElement CreateItemElement(ISitemapItem item)
-        {
+        {           
             var itemElement = new XElement(xmlns + "url", new XElement(xmlns + "loc", item.Url.ToLowerInvariant()));
 
             // all other elements are optional
@@ -43,7 +45,7 @@ namespace Fabrik.Common.Web
             if (item.ChangeFrequency.HasValue)
                 itemElement.Add(new XElement(xmlns + "changefreq", item.ChangeFrequency.Value.ToString().ToLower()));
 
-            if (item.ChangeFrequency.HasValue)
+            if (item.Priority.HasValue)
                 itemElement.Add(new XElement(xmlns + "priority", item.Priority.Value.ToString(CultureInfo.InvariantCulture)));
 
             return itemElement;

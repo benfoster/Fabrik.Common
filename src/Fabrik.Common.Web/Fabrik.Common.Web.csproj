@@ -55,6 +55,7 @@
     <Compile Include="ActionResults\HttpStatusCodeViewResult.cs" />
     <Compile Include="ActionResults\JavaScriptRedirectResult.cs" />
     <Compile Include="ActionResults\RssFeedResult.cs" />
+    <Compile Include="ActionResults\SitemapResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
     <Compile Include="AttributeMetadataPlugin.cs" />
     <Compile Include="DefaultViewFactory.cs" />
