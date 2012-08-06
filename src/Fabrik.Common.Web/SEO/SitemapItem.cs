@@ -18,7 +18,7 @@ namespace Fabrik.Common.Web
         public SitemapItem(string url, DateTime? lastModified = null, SitemapChangeFrequency? changeFrequency = null, double? priority = null)
         {
             Ensure.Argument.NotNullOrEmpty(url, "url");
-            
+
             Url = url;
             LastModified = lastModified;
             ChangeFrequency = changeFrequency;

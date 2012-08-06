@@ -2,8 +2,6 @@
 using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
-using System.Web;
-using System;
 
 namespace Fabrik.Common.Web
 {   
@@ -46,7 +44,7 @@ namespace Fabrik.Common.Web
                 itemElement.Add(new XElement(xmlns + "changefreq", item.ChangeFrequency.Value.ToString().ToLower()));
 
             if (item.Priority.HasValue)
-                itemElement.Add(new XElement(xmlns + "priority", item.Priority.Value.ToString(CultureInfo.InvariantCulture)));
+                itemElement.Add(new XElement(xmlns + "priority", item.Priority.Value.ToString("F1", CultureInfo.InvariantCulture)));
 
             return itemElement;
         }
