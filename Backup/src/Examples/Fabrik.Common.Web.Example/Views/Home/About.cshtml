@@ -1,0 +1,16 @@
+﻿@model Fabrik.Common.Web.Example.Models.AboutView
+@{
+    ViewBag.Title = "About Us";
+}
+
+<h2>About</h2>
+
+@Html.Image("~/content/img/image.jpg")
+
+<h3>Locations</h3>
+
+<ul>
+    @foreach (var location in Model.Locations) { 
+        <li>@location</li>
+    }
+</ul>

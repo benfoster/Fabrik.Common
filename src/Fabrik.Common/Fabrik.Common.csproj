@@ -57,6 +57,7 @@
     <Compile Include="RegexUtils.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="StringValidationExtensions.cs" />
+    <Compile Include="TypeExtensions.cs" />
     <Compile Include="XmlExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
