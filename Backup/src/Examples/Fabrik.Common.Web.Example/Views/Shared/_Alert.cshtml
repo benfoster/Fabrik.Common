@@ -1,5 +1,0 @@
-﻿@model Alert
-<div id="flash" class="alert alert-@Model.AlertType.ToString().ToLower()">
-    <strong class="alert-heading">@Model.Title</strong>
-    @Html.Raw(Model.Description)
-</div>
