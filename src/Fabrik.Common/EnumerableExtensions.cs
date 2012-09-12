@@ -45,5 +45,13 @@ namespace Fabrik.Common
         {
             return new ReadOnlyCollection<T>(enumerable.ToList());
         }
+
+        /// <summary>
+        /// Validates that the <paramref name="enumerable"/> is not null and contains items.
+        /// </summary>
+        public static bool IsNotNullOrEmpty<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable != null && enumerable.Any();
+        }
     }
 }

@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{76D9DE
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.WebAPI.Specs", "src\Specs\Fabrik.Common.WebAPI.Specs\Fabrik.Common.WebAPI.Specs.csproj", "{883F921F-434F-4635-87E5-7A8CF15ADBB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{8918833B-FCEA-44D4-8AB1-667F7075152F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8918833B-FCEA-44D4-8AB1-667F7075152F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8918833B-FCEA-44D4-8AB1-667F7075152F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883F921F-434F-4635-87E5-7A8CF15ADBB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883F921F-434F-4635-87E5-7A8CF15ADBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883F921F-434F-4635-87E5-7A8CF15ADBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883F921F-434F-4635-87E5-7A8CF15ADBB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F2D9D130-76D1-4C0C-88DB-75999D67A7EE} = {BAE286B9-2844-408D-B695-74FA154B4E8E}
 		{7A005F0D-9A2F-456E-B3CD-E889E52EF74C} = {BAE286B9-2844-408D-B695-74FA154B4E8E}
+		{883F921F-434F-4635-87E5-7A8CF15ADBB2} = {BAE286B9-2844-408D-B695-74FA154B4E8E}
 		{FA2B5E61-E552-434F-B4E0-8287F4A29FDB} = {2FDECC06-2FC5-4357-B974-705A8A85315E}
 	EndGlobalSection
 EndGlobal
