@@ -27,8 +27,7 @@ namespace Fabrik.Common.WebAPI
 
         protected virtual Task Pump(Stream input, Stream output)
         {
-            return input.CopyToAsync(output)
-                .ContinueWith(task => output.Position = 0); // reset stream position back to 0
+            return input.CopyToAsync(output);
         }
     }
 }

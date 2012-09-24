@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 
 namespace Fabrik.Common.WebAPI.Specs
 {
-    [Subject(typeof(CompressionHandler), "Sending Response")]
+    [Subject(typeof(CompressionHandler))]
     public class CompressionHandlerSpecs
     {
         static DelegatingHandler handler;
@@ -27,6 +27,9 @@ namespace Fabrik.Common.WebAPI.Specs
 
             It Should_compress_the_response = ()
                 => response.Content.ShouldBeOfType(typeof(CompressedContent));
+
+            It Should_set_the_content_encoding_header = ()
+                => response.Content.Headers.ContentEncoding.ShouldContain("gzip");
         }
 
         public class When_the_request_contains_an_invalid_encoding_type

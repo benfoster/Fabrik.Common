@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompressionHandlerSpecs.cs" />
+    <Compile Include="DecompressionHandlerSpecs.cs" />
+    <Compile Include="ContactsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelper.cs" />
   </ItemGroup>

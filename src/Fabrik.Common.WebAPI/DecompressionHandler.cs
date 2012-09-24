@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fabrik.Common.WebAPI
 {
-    public class DecompressionHandler : HttpClientHandler
+    public class DecompressionHandler : DelegatingHandler
     {
         public Collection<ICompressor> Compressors;
 
@@ -43,10 +43,13 @@ namespace Fabrik.Common.WebAPI
             {
                 MemoryStream decompressed = new MemoryStream();
                 await compressor.Decompress(await compressedContent.ReadAsStreamAsync(), decompressed);
+                
+                // set position back to 0 so it can be read again
+                decompressed.Position = 0;
+
                 var newContent = new StreamContent(decompressed);
                 // copy content type so we know how to load correct formatter
                 newContent.Headers.ContentType = compressedContent.Headers.ContentType;
-
                 return newContent;
             }
         }

@@ -14,12 +14,12 @@ namespace Fabrik.Common.WebAPI
 
         public override Stream CreateCompressionStream(Stream output)
         {
-            return new GZipStream(output, CompressionMode.Compress);
+            return new GZipStream(output, CompressionMode.Compress, leaveOpen: true);
         }
 
         public override Stream CreateDecompressionStream(Stream input)
         {
-            return new GZipStream(input, CompressionMode.Decompress);
+            return new GZipStream(input, CompressionMode.Decompress, leaveOpen: true);
         }
     }
 }
