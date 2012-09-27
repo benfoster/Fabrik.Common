@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -25,7 +26,11 @@ namespace Fabrik.Common.WebAPI.AtomPubExample.Controllers
 
             posts.Accepts.Add("application/atom+xml;type=entry");
 
+            var categories = new InlineCategoriesDocument();
+            posts.Categories.Add(categories);
+
             ws.Collections.Add(posts);
+
             doc.Workspaces.Add(ws);
 
             var response = new HttpResponseMessage(HttpStatusCode.OK);
