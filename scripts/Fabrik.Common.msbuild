@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         ToolsVersion="4.0"
+         DefaultTargets="Default">
+
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <SolutionDir Condition="'$(SolutionDir)' == ''">$([System.IO.Path]::GetDirectoryName($(MSBuildProjectDirectory)))</SolutionDir>
+    <ScriptsDir>$(SolutionDir)\scripts</ScriptsDir>
+    <NugetExeDir>$(SolutionDir)\.nuget</NugetExeDir>
+    <Solutionfile>$(SolutionDir)\Fabrik.Common.sln</Solutionfile>
+    <BuildArtifactsDir>$(SolutionDir)\artifacts</BuildArtifactsDir>
+    <NuGetPackageOutputDir>$(BuildArtifactsDir)\packages</NuGetPackageOutputDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AppProjFiles Include="$(SolutionDir)\src\Fabrik.*\**\*.csproj" />
+    <TestProjFiles Include="$(SolutionDir)\src\Specs\**\*.csproj" />
+    <NuGetPackageProjects Include="$(SolutionDir)\src\Fabrik.Common\Fabrik.Common.csproj;$(SolutionDir)\src\Fabrik.Common.Web\Fabrik.Common.Web.csproj;$(SolutionDir)\src\Fabrik.Common.WebAPI\Fabrik.Common.WebAPI.csproj" />
+  </ItemGroup>
+
+  <Target Name="Default" DependsOnTargets="Compile; Package" />
+  <Target Name="DefaultCI" DependsOnTargets="Compile; Package; PublishPackage" />
+
+   <Target Name="Clean">
+	 <RemoveDir Directories="$(BuildArtifactsDir)" />
+   </Target>
+
+  <Target Name="Init" DependsOnTargets="Clean">
+    <MakeDir Directories="$(BuildArtifactsDir);$(NuGetPackageOutputDir)" />
+  </Target>
+
+  <Target Name="Compile" DependsOnTargets="Init">
+    <MSBuild Projects="@(AppProjFiles)" Targets="Rebuild" Properties="OutDir=$(BuildArtifactsDir);Configuration=$(Configuration)" />
+  </Target>
+
+  <Target Name="Package">
+    <Exec Command="$(NugetExeDir)\nuget.exe pack %(NuGetPackageProjects.FullPath) -Build -OutputDirectory $(NuGetPackageOutputDir)" />
+  </Target>
+
+</Project>
