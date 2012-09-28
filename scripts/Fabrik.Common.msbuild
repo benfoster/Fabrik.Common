@@ -16,7 +16,7 @@
   <ItemGroup>
     <AppProjFiles Include="$(SolutionDir)\src\Fabrik.*\**\*.csproj" />
     <TestProjFiles Include="$(SolutionDir)\src\Specs\**\*.csproj" />
-    <NuGetPackageProjects Include="$(SolutionDir)\src\Fabrik.Common\Fabrik.Common.csproj;$(SolutionDir)\src\Fabrik.Common.Web\Fabrik.Common.Web.csproj;$(SolutionDir)\src\Fabrik.Common.WebAPI\Fabrik.Common.WebAPI.csproj" />
+    <NuGetPackageProjects Include="$(SolutionDir)\src\Fabrik.Common\Fabrik.Common.csproj;$(SolutionDir)\src\Fabrik.Common.Web\Fabrik.Common.Web.csproj;$(SolutionDir)\src\Fabrik.Common.WebAPI\Fabrik.Common.WebAPI.csproj;$(SolutionDir)\src\Fabrik.Common.CMS\Fabrik.Common.CMS.csproj;$(SolutionDir)\src\Fabrik.Common.Web.StructureMap\Fabrik.Common.Web.StructureMap.csproj" />
   </ItemGroup>
 
   <Target Name="Default" DependsOnTargets="Compile; Package" />
