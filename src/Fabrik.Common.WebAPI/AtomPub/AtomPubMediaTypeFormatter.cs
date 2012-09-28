@@ -1,17 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.ServiceModel.Syndication;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace Fabrik.Common.WebAPI.AtomPub
 {
-    public class AtomPubMediaFormatter : MediaTypeFormatter
+    public class AtomPubMediaFormatter : BufferedMediaTypeFormatter
     {
         private const string AtomMediaType = "application/atom+xml";
 
@@ -31,22 +29,22 @@ namespace Fabrik.Common.WebAPI.AtomPub
             return type.Implements<IPublication>() || type.Implements<IPublicationFeed>();
         }
 
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public override object ReadFromStream(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
         {
             Ensure.Argument.NotNull(type, "type");
             Ensure.Argument.NotNull(readStream, "readStream");
             
-            return TaskHelpers.RunSynchronously<object>(() =>
+            HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+
+            // If content length is 0 then return default value for this type
+            if (contentHeaders != null && contentHeaders.ContentLength == 0)
             {
-                HttpContentHeaders contentHeaders = content == null ? null : content.Headers;
+                return GetDefaultValueForType(type);
+            }
 
-                // If content length is 0 then return default value for this type
-                if (contentHeaders != null && contentHeaders.ContentLength == 0)
-                {
-                    return GetDefaultValueForType(type);
-                }
-
-                try
+            try
+            {
+                using (readStream)
                 {
                     using (var reader = XmlReader.Create(readStream))
                     {
@@ -60,21 +58,23 @@ namespace Fabrik.Common.WebAPI.AtomPub
                         return command;
                     }
                 }
-                catch (Exception e)
+            }
+            catch (Exception e)
+            {
+                if (formatterLogger == null)
                 {
-                    if (formatterLogger == null)
-                    {
-                        throw;
-                    }
-                    formatterLogger.LogError(String.Empty, e);
-                    return GetDefaultValueForType(type);
+                    throw;
                 }
-            });
+                formatterLogger.LogError(String.Empty, e);
+                return GetDefaultValueForType(type);
+            }
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+        public override void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
         {
-            return TaskHelpers.RunSynchronously(() =>
+            Ensure.Argument.NotNull(value, "value");
+
+            using (writeStream)
             {
                 if (value is IPublicationFeed)
                 {
@@ -84,7 +84,7 @@ namespace Fabrik.Common.WebAPI.AtomPub
                 {
                     WriteAtomEntry((IPublication)value, writeStream);
                 }
-            });
+            }
         }
 
         private void WriteAtomFeed(IPublicationFeed feed, Stream writeStream)
