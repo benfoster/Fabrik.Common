@@ -11,6 +11,6 @@
     <licenseUrl>https://raw.github.com/benfoster/Fabrik.Common/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/benfoster/Fabrik.Common</projectUrl>
     <copyright>Copyright 2012 Ben Foster</copyright>
-    <tags>fabrik.common dotnet</tags>
+    <tags>fabrik dotnet</tags>
   </metadata>
 </package>

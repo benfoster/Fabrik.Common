@@ -11,7 +11,7 @@
     <licenseUrl>https://raw.github.com/benfoster/Fabrik.Common/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/benfoster/Fabrik.Common</projectUrl>
     <copyright>Copyright 2012 Ben Foster</copyright>
-    <tags>fabrik.common dotnet aspnetmvc</tags>
+    <tags>fabrik dotnet aspnetmvc</tags>
     <dependencies>
       <dependency id="Fabrik.Common" version="$version$" />
     </dependencies>
