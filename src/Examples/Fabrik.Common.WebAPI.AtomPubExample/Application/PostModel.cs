@@ -1,6 +1,7 @@
 ﻿using Fabrik.Common.WebAPI.AtomPub;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fabrik.Common.WebAPI.AtomPubExample
 {
@@ -15,13 +16,14 @@ namespace Fabrik.Common.WebAPI.AtomPubExample
         public string[] Tags { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime LastUpdated { get; set; }
+        public string CategoriesScheme { get; set; }
 
         public PostModel()
         {
             PublishDate = DateTime.UtcNow;
         }
 
-        public PostModel(Post post)
+        public PostModel(Post post, string categoriesScheme)
         {
             Id = post.Id;
             Title = post.Title;
@@ -32,6 +34,7 @@ namespace Fabrik.Common.WebAPI.AtomPubExample
             Tags = post.Tags;
             PublishDate = post.PublishDate;
             LastUpdated = post.LastUpdated;
+            CategoriesScheme = categoriesScheme;
         }
 
         string IPublication.Id
@@ -44,9 +47,12 @@ namespace Fabrik.Common.WebAPI.AtomPubExample
             get { return PublishDate; }
         }
 
-        IEnumerable<string> IPublication.Categories
+        IEnumerable<IPublicationCategory> IPublication.Categories
         {
-            get { return Tags; }
+            get 
+            {
+                return Tags.Select(t => new PublicationCategory(t));
+            }
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace Fabrik.Common.WebAPI.AtomPubExample
 {
@@ -16,6 +13,7 @@ namespace Fabrik.Common.WebAPI.AtomPubExample
             // Formatters
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.Add(new AtomPub.AtomPubMediaFormatter());
+            config.Formatters.Add(new AtomPub.AtomPubCategoryMediaTypeFormatter());
 
             // Filters
             config.Filters.Add(new ValidateModelStateAttribute());

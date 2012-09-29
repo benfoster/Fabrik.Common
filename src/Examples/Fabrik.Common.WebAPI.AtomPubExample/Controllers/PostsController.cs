@@ -7,19 +7,17 @@ using System.Web.Http;
 
 namespace Fabrik.Common.WebAPI.AtomPubExample.Controllers
 {
-    public class PostsController : ApiController
+    public class PostsController : BlogControllerBase
     {
-        private static readonly List<Post> posts = new List<Post>();
-
         // GET api/posts
         public PostFeed Get()
-        {
+        {           
             var feed = new PostFeed
             {
                 Title = "My Post Feed",
                 Author = "John Doe",
                 Posts = posts.Select(p => 
-                    new PostModel(p)).OrderByDescending(p => p.PublishDate).ToArray()
+                    new PostModel(p, GetCategoryScheme())).OrderByDescending(p => p.PublishDate).ToArray()
             };
 
             return feed;
@@ -28,7 +26,7 @@ namespace Fabrik.Common.WebAPI.AtomPubExample.Controllers
         // GET api/posts/5
         public PostModel Get(int id)
         {
-            return new PostModel(GetPost(id));
+            return new PostModel(GetPost(id), GetCategoryScheme());
         }
 
         // POST api/posts
@@ -48,7 +46,7 @@ namespace Fabrik.Common.WebAPI.AtomPubExample.Controllers
 
             posts.Add(post);
 
-            var response = Request.CreateResponse(HttpStatusCode.Created, new PostModel(post));
+            var response = Request.CreateResponse(HttpStatusCode.Created, new PostModel(post, GetCategoryScheme()));
             response.Headers.Location = new Uri(Url.Link("DefaultApi", new { controller = "posts", id = post.Id }));
 
             return response;
@@ -94,6 +92,11 @@ namespace Fabrik.Common.WebAPI.AtomPubExample.Controllers
         private int GetNextId()
         {
             return posts.Count > 0 ? posts.Max(p => p.Id) + 1 : 1;
+        }
+
+        private string GetCategoryScheme()
+        {
+            return Url.Link("DefaultApi", new { controller = "tags" });
         }
     }
 }

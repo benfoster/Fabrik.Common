@@ -54,11 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AtomPub\AtomCategoriesMediaTypeFormatter.cs" />
     <Compile Include="AtomPub\AtomExtensions.cs" />
     <Compile Include="AtomPub\AtomPubMediaTypeFormatter.cs" />
     <Compile Include="AtomPub\IPublication.cs" />
+    <Compile Include="AtomPub\IPublicationCategoriesDocument.cs" />
+    <Compile Include="AtomPub\IPublicationCategory.cs" />
     <Compile Include="AtomPub\IPublicationCommand.cs" />
     <Compile Include="AtomPub\IPublicationFeed.cs" />
+    <Compile Include="AtomPub\PublicationCategory.cs" />
     <Compile Include="AtomPub\PublicationContentTypes.cs" />
     <Compile Include="AtomPub\WLWMessageHandler.cs" />
     <Compile Include="BadRequestException.cs" />
@@ -88,6 +92,7 @@
     <Compile Include="Links\PreviousLink.cs" />
     <Compile Include="Links\RelatedLink.cs" />
     <Compile Include="Links\SelfLink.cs" />
+    <Compile Include="AtomPub\PublicationCategoriesDocument.cs" />
     <Compile Include="UriExtensions.cs" />
     <Compile Include="ValidateModelStateAttribute.cs" />
   </ItemGroup>

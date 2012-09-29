@@ -86,10 +86,13 @@
     <Compile Include="Application\PostResponseEnricher.cs" />
     <Compile Include="Application\PostFeed.cs" />
     <Compile Include="Application\Resource.cs" />
+    <Compile Include="Application\TagModel.cs" />
     <Compile Include="Application\UpdatePostCommand.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BlogControllerBase.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -106,6 +109,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="wlwmanifest.xml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

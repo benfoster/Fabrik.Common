@@ -16,7 +16,8 @@ namespace Fabrik.Common.WebAPI.AtomPub
         string ContentType { get; }
         DateTime LastUpdated { get; }
         DateTime? PublishDate { get; }
-        IEnumerable<string> Categories { get; }
+        IEnumerable<IPublicationCategory> Categories { get; }
+        string CategoriesScheme { get; }
         IEnumerable<Link> Links { get; }
     }
 }

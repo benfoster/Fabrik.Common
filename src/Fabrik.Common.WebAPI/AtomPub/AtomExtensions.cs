@@ -28,11 +28,10 @@ namespace Fabrik.Common.WebAPI.AtomPub
             }
 
             publication.Categories.ForEach(category =>
-                item.Categories.Add(new SyndicationCategory(category)));
+                item.Categories.Add(new SyndicationCategory(category.Name, publication.CategoriesScheme, category.Label)));
 
             publication.Links.ForEach(link =>
                 item.Links.Add(new SyndicationLink(new Uri(link.Href)) { RelationshipType = link.Rel, Title = link.Title }));
-
 
             return item;
         }
