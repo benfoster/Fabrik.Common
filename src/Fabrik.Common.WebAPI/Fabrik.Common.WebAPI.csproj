@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AtomPub\AtomCategoriesMediaTypeFormatter.cs" />
+    <Compile Include="AtomPub\AtomPubCategoryMediaTypeFormatter.cs" />
     <Compile Include="AtomPub\AtomExtensions.cs" />
     <Compile Include="AtomPub\AtomPubMediaTypeFormatter.cs" />
     <Compile Include="AtomPub\IPublication.cs" />
