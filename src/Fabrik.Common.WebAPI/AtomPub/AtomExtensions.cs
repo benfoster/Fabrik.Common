@@ -1,5 +1,4 @@
-﻿using Fabrik.Common.WebAPI.Links;
-using System;
+﻿using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
 
@@ -7,19 +6,36 @@ namespace Fabrik.Common.WebAPI.AtomPub
 {
     public static class AtomExtensions
     {
+        public static SyndicationFeed Syndicate(this IPublicationFeed feed)
+        {
+            Ensure.Argument.NotNull(feed, "feed");
+
+            var atomFeed = new SyndicationFeed
+            {
+                Title = new TextSyndicationContent(feed.Title),
+                Items = feed.Items.Select(i => i.Syndicate()),
+                Description = new TextSyndicationContent(feed.Summary ?? string.Empty)
+            };
+
+            atomFeed.Authors.Add(new SyndicationPerson { Name = feed.Author });
+
+            feed.Links.ForEach(link =>
+                atomFeed.Links.Add(new SyndicationLink(new Uri(link.Href)) { RelationshipType = link.Rel, Title = link.Title }));
+
+            return atomFeed;
+        }
+        
         public static SyndicationItem Syndicate(this IPublication publication)
         {
             Ensure.Argument.NotNull(publication, "publication");
 
-            var selfLink = publication.Links.FirstOrDefault(l => l is SelfLink);
-
             var item = new SyndicationItem
             {
-                Id = selfLink.Href,
+                Id = publication.Id,
                 Title = new TextSyndicationContent(publication.Title, TextSyndicationContentKind.Plaintext),
                 LastUpdatedTime = publication.PublishDate ?? publication.LastUpdated, // use publish date if it exists (for posts)
                 Summary = new TextSyndicationContent(publication.Summary, TextSyndicationContentKind.Plaintext),
-                Content = GetSyndicationContent(publication.Content, publication.ContentType),
+                Content = GetSyndicationContent(publication.Content, publication.ContentType)
             };
 
             if (publication.PublishDate.HasValue) // Optional according to Atom spec

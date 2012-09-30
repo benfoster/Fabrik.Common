@@ -1,4 +1,5 @@
 ﻿using Fabrik.Common.WebAPI.AtomPub;
+using Fabrik.Common.WebAPI.Links;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace Fabrik.Common.WebAPI.AtomPubExample
 
         string IPublication.Id
         {
-            get { return Id.ToString(); }
+            get { return Links.FirstOrDefault(link => link is SelfLink).Href; }
         }
 
         DateTime? IPublication.PublishDate

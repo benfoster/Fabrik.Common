@@ -89,17 +89,7 @@ namespace Fabrik.Common.WebAPI.AtomPub
 
         private void WriteAtomFeed(IPublicationFeed feed, Stream writeStream)
         {
-            var atomEntries = feed.Items.Select(i => i.Syndicate());
-
-            var atomFeed = new SyndicationFeed
-            {
-                Title = new TextSyndicationContent(feed.Title),
-                Items = atomEntries
-            };
-
-            atomFeed.Authors.Add(new SyndicationPerson { Name = feed.Author });
-
-            var formatter = new Atom10FeedFormatter(atomFeed);
+            var formatter = new Atom10FeedFormatter(feed.Syndicate());
 
             using (var writer = XmlWriter.Create(writeStream))
             {

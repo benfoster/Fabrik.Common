@@ -16,6 +16,7 @@ namespace Fabrik.Common.WebAPI.AtomPubExample.Controllers
             {
                 Title = "My Post Feed",
                 Author = "John Doe",
+                Summary = "A blog about Atom-Powered robots.",
                 Posts = posts.Select(p => 
                     new PostModel(p, GetCategoryScheme())).OrderByDescending(p => p.PublishDate).ToArray()
             };

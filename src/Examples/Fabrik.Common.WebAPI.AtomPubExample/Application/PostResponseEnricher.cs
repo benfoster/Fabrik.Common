@@ -31,6 +31,8 @@ namespace Fabrik.Common.WebAPI.AtomPubExample
             if (response.TryGetContentValue<PostFeed>(out feed))
             {
                 feed.Posts.ForEach(p => Enrich(p, urlHelper));
+                var selfUrl = urlHelper.Link("DefaultApi", new { controller = "posts" });
+                feed.AddLink(new SelfLink(selfUrl));
             }
 
             return response;
