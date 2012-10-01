@@ -34,7 +34,7 @@ namespace Fabrik.Common.WebAPI.AtomPub
             var document = value as IPublicationCategoriesDocument;
 
             var atomDoc = new InlineCategoriesDocument(
-                document.Categories.Select(c => new SyndicationCategory(c.Name)),
+                document.Categories.Select(c => new SyndicationCategory(c.Name) { Label = c.Label }),
                 document.IsFixed,
                 document.Scheme
             );

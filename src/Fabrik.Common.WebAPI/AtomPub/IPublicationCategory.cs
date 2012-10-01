@@ -1,6 +1,9 @@
 ﻿
 namespace Fabrik.Common.WebAPI.AtomPub
 {
+    /// <summary>
+    /// An interface for items that can be returned as Atom categories.
+    /// </summary>
     public interface IPublicationCategory
     {
         /// <summary>

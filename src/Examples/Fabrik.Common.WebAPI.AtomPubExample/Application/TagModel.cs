@@ -6,12 +6,6 @@ namespace Fabrik.Common.WebAPI.AtomPubExample
     {
         public string Name { get; set; }
         public string Slug { get; set; }
-        public string Scheme { get; set; }
-
-        string IPublicationCategory.Name
-        {
-            get { return Name; }
-        }
 
         string IPublicationCategory.Label
         {
