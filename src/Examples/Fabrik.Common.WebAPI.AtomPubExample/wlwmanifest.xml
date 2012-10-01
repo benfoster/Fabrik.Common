@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns="http://schemas.microsoft.com/wlw/manifest/weblog">
+  <options>
+    <categoryScheme>http://localhost:56592/api/tags</categoryScheme>
+    <supportsNewCategories>Yes</supportsNewCategories>
+  </options>
+</manifest>
