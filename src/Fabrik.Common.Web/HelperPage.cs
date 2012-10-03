@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using System.Web.Mvc;
 using System.Web.WebPages;
 
 namespace Fabrik.Common.Web
@@ -14,7 +13,7 @@ namespace Fabrik.Common.Web
             get { return ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html; }
         }
 
-        public static new UrlHelper Url
+        public static UrlHelper Url
         {
             get { return ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Url; }
         }

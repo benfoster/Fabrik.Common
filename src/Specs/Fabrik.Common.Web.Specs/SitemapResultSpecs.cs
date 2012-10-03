@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Machine.Fakes;
+using Machine.Specifications;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using Machine.Fakes;
-using Machine.Specifications;
 
 namespace Fabrik.Common.Web.Specs
 {
@@ -42,14 +43,24 @@ namespace Fabrik.Common.Web.Specs
 
                 using (var s = new StringReader(xml))
                 {
-                    var doc = XDocument.Load(s);
-                    var schemas = new XmlSchemaSet();
-                    schemas.Add("http://www.sitemaps.org/schemas/sitemap/0.9", "http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
-
-                    doc.Validate(schemas, (sender, e) =>
+                    using (var fs = File.OpenRead("sitemap.xsd"))
                     {
-                        e.Exception.ShouldBeNull();
-                    });
+                        using (var reader = XmlReader.Create(fs))
+                        {
+                            var schemas = new XmlSchemaSet();
+                            schemas.Add("http://www.sitemaps.org/schemas/sitemap/0.9", reader);
+
+                            bool isValid = true;
+
+                            var doc = XDocument.Load(s);
+                            doc.Validate(schemas, (sender, e) =>
+                            {
+                                isValid = false;
+                            });
+
+                            isValid.ShouldBeTrue();
+                        }
+                    }
                 }               
             };
         }
