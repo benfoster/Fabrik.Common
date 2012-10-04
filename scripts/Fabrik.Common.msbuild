@@ -22,9 +22,9 @@
   <Target Name="Default" DependsOnTargets="Compile; Specs; Package" />
   <Target Name="DefaultCI" DependsOnTargets="Compile; Specs; Package; PublishPackage" />
 
-   <Target Name="Clean">
-	 <RemoveDir Directories="$(BuildArtifactsDir)" />
-   </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(BuildArtifactsDir)" />
+  </Target>
 
   <Target Name="Init" DependsOnTargets="Clean">
     <MakeDir Directories="$(BuildArtifactsDir);$(NuGetPackageOutputDir)" />
@@ -32,20 +32,20 @@
 
   <Target Name="Compile" DependsOnTargets="Init">
     <MSBuild Projects="@(AppProjFiles)" Targets="Rebuild" Properties="OutDir=$(BuildArtifactsDir);Configuration=$(Configuration)" />
-	<MSBuild Projects="@(TestProjFiles)" Targets="Rebuild" Properties="Configuration=Debug">
-		<Output PropertyName="TestProjOutputs" TaskParameter="TargetOutputs" />
-	</MSBuild>
+    <MSBuild Projects="@(TestProjFiles)" Targets="Rebuild" Properties="Configuration=Debug">
+      <Output PropertyName="TestProjOutputs" TaskParameter="TargetOutputs" />
+    </MSBuild>
   </Target>
 
   <Target Name="Specs" DependsOnTargets="Compile">
     <PropertyGroup>
-		<MSpecAssemblies>$(TestProjOutputs.Replace(";", " "))</MSpecAssemblies>
-		<MSpecCommand>$(SolutionDir)\packages\Machine.Specifications.0.5.8\tools\mspec-clr4.exe $(MSpecAssemblies)</MSpecCommand>
+      <MSpecAssemblies>$(TestProjOutputs.Replace(";", " "))</MSpecAssemblies>
+      <MSpecCommand>$(SolutionDir)\packages\Machine.Specifications.0.5.8\tools\mspec-clr4.exe $(MSpecAssemblies)</MSpecCommand>
     </PropertyGroup>
     <Message Importance="high" Text="Running Specs with this command: $(MSpecCommand)"/>
     <Exec Command="$(MSpecCommand)" />
   </Target>
-  
+
   <Target Name="Package">
     <Exec Command="$(NugetExeDir)\nuget.exe pack %(NuGetPackageProjects.FullPath) -Build -OutputDirectory $(NuGetPackageOutputDir)" />
   </Target>
