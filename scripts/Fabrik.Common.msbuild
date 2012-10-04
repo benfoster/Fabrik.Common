@@ -16,7 +16,6 @@
   <ItemGroup>
     <AppProjFiles Include="$(SolutionDir)\src\Fabrik.*\**\*.csproj" />
     <TestProjFiles Include="$(SolutionDir)\src\Specs\**\*.csproj" />
-	<TestProjOutput Include="$(SolutionDir)\src\Specs\Fabrik.Common.Web.Specs\bin\Debug\Fabrik.Common.Web.Specs.dll $(SolutionDir)\src\Specs\Fabrik.Common.WebApi.Specs\bin\Debug\Fabrik.Common.WebApi.Specs.dll" />
     <NuGetPackageProjects Include="$(SolutionDir)\src\Fabrik.Common\Fabrik.Common.csproj;$(SolutionDir)\src\Fabrik.Common.Web\Fabrik.Common.Web.csproj;$(SolutionDir)\src\Fabrik.Common.WebAPI\Fabrik.Common.WebAPI.csproj;$(SolutionDir)\src\Fabrik.Common.CMS\Fabrik.Common.CMS.csproj;$(SolutionDir)\src\Fabrik.Common.Web.StructureMap\Fabrik.Common.Web.StructureMap.csproj" />
   </ItemGroup>
 
@@ -33,14 +32,15 @@
 
   <Target Name="Compile" DependsOnTargets="Init">
     <MSBuild Projects="@(AppProjFiles)" Targets="Rebuild" Properties="OutDir=$(BuildArtifactsDir);Configuration=$(Configuration)" />
-	<MSBuild Projects="@(TestProjFiles)" Targets="Rebuild" Properties="Configuration=Debug" />
+	<MSBuild Projects="@(TestProjFiles)" Targets="Rebuild" Properties="Configuration=Debug">
+		<Output PropertyName="TestProjOutputs" TaskParameter="TargetOutputs" />
+	</MSBuild>
   </Target>
 
   <Target Name="Specs" DependsOnTargets="Compile">
     <PropertyGroup>
-      <MSpecCommand>
-        $(SolutionDir)\packages\Machine.Specifications.0.5.8\tools\mspec-clr4.exe @(TestProjOutput)
-      </MSpecCommand>
+		<MSpecAssemblies>$(TestProjOutputs.Replace(";", " "))</MSpecAssemblies>
+		<MSpecCommand>$(SolutionDir)\packages\Machine.Specifications.0.5.8\tools\mspec-clr4.exe $(MSpecAssemblies)</MSpecCommand>
     </PropertyGroup>
     <Message Importance="high" Text="Running Specs with this command: $(MSpecCommand)"/>
     <Exec Command="$(MSpecCommand)" />
