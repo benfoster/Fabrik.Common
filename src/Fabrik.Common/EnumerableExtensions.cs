@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Fabrik.Common
 {
@@ -35,6 +35,10 @@ namespace Fabrik.Common
         /// <param name="pageSize">The size of the pages.</param>
         public static IEnumerable<T> GetPage<T>(this IEnumerable<T> source, int pageIndex, int pageSize)
         {
+            Ensure.Argument.NotNull(source, "source");
+            Ensure.Argument.Is(pageIndex >= 0, "The page index cannot be negative.");
+            Ensure.Argument.Is(pageSize > 0, "The page size must be greater than zero.");
+            
             return source.Skip(pageIndex * pageSize).Take(pageSize);
         }
 
