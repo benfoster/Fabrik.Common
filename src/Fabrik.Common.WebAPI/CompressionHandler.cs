@@ -23,7 +23,7 @@ namespace Fabrik.Common.WebAPI
         {
             var response = await base.SendAsync(request, cancellationToken);
 
-            if (request.Headers.AcceptEncoding.IsNotNullOrEmpty())
+            if (request.Headers.AcceptEncoding.IsNotNullOrEmpty() && response.Content != null)
             {
                 var encoding = request.Headers.AcceptEncoding.First();
 
