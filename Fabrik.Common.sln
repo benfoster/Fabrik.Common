@@ -32,6 +32,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.WebAPI.Specs"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.WebAPI.AtomPubExample", "src\Examples\Fabrik.Common.WebAPI.AtomPubExample\Fabrik.Common.WebAPI.AtomPubExample.csproj", "{FBF23602-7B10-40CB-A6E4-8B369541FA94}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{843B4D7B-96BA-4D60-B6F1-31125F63AEEE}"
+	ProjectSection(SolutionItems) = preProject
+		src\Common\CommonAssemblyInfo.cs = src\Common\CommonAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

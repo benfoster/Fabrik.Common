@@ -20,7 +20,7 @@ namespace Fabrik.Common.WebAPI
         
         protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
         {
-            var response = await base.SendAsync(request, cancellationToken);
+            var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
             if (response.Content.Headers.ContentEncoding.IsNotNullOrEmpty() && response.Content != null)
             {
@@ -30,19 +30,19 @@ namespace Fabrik.Common.WebAPI
 
                 if (compressor != null)
                 {
-                    response.Content = await DecompressContent(response.Content, compressor);
+                    response.Content = await DecompressContentAsync(response.Content, compressor).ConfigureAwait(false);
                 }
             }
 
             return response;
         }
 
-        private static async Task<HttpContent> DecompressContent(HttpContent compressedContent, ICompressor compressor)
+        private static async Task<HttpContent> DecompressContentAsync(HttpContent compressedContent, ICompressor compressor)
         {
             using (compressedContent)
             {
                 MemoryStream decompressed = new MemoryStream();
-                await compressor.Decompress(await compressedContent.ReadAsStreamAsync(), decompressed);
+                await compressor.Decompress(await compressedContent.ReadAsStreamAsync(), decompressed).ConfigureAwait(false);
                 
                 // set position back to 0 so it can be read again
                 decompressed.Position = 0;
