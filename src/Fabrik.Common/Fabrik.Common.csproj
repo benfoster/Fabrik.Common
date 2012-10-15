@@ -43,6 +43,7 @@
     <Compile Include="..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Base64Url.cs" />
     <Compile Include="DateTimeWithZone.cs" />
     <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="Ensure.cs" />

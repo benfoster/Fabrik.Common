@@ -57,5 +57,19 @@ namespace Fabrik.Common
         {
             return enumerable != null && enumerable.Any();
         }
+
+        /// <summary>
+        /// Concatenates the members of a collection, using the specified separator between each member.
+        /// </summary>
+        /// <returns>A string that consists of the members of <paramref name="values"/> delimited by the <paramref name="separator"/> string. If values has no members, the method returns null.</returns>
+        public static string JoinOrDefault<T>(this IEnumerable<T> values, string separator)
+        {
+            Ensure.Argument.NotNullOrEmpty(separator, "separator");
+
+            if (values == null)
+                return default(string);
+
+            return string.Join(separator, values);
+        }
     }
 }

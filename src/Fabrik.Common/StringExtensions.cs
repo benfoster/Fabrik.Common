@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -115,6 +116,17 @@ namespace Fabrik.Common
                 result = result.Substring(0, result.Length <= maxLength ? result.Length : maxLength.Value).Trim();
 
             return Regex.Replace(result, @"\s", "-"); // replace all spaces with hyphens
+        }
+
+        /// <summary>
+        /// Returns a string array containing the trimmed substrings in this <paramref name="value"/>
+        /// that are delimited by the provided <paramref name="separators"/>.
+        /// </summary>
+        public static IEnumerable<string> SplitAndTrim(this string value, params char[] separators)
+        {
+            Ensure.Argument.NotNull(value, "source");
+
+            return value.Split(separators, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim());
         }
 
         private static string RemoveAccent(string value)
