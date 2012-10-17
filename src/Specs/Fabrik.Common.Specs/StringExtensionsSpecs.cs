@@ -1,5 +1,7 @@
-﻿using System;
-using Machine.Specifications;
+﻿using Machine.Specifications;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Fabrik.Common.Specs
 {
@@ -238,5 +240,31 @@ namespace Fabrik.Common.Specs
 
         It Should_split_the_string_on_each_uppercase_character = ()
             => result.ShouldEqual("This Is A Pascal Case");
+    }
+
+    [Subject(typeof(StringExtensions), "SplitAndTrim")]
+    public class String_SplitAndTrim
+    {
+        static List<string> result;
+
+        Because of = ()
+            => result = " Tag 1, Tag 2, Tag 3 ,, Tag 4, Tag 5, ".SplitAndTrim(',').ToList();
+
+        It Should_remove_leading_spaces = ()
+            => result[0].ShouldEqual("Tag 1");
+
+        It Should_remove_trailing_spaces = ()
+            => result[4].ShouldEqual("Tag 5");
+
+        It Should_remove_empty_entries = ()
+            => result.Count.ShouldEqual(5);
+
+        It Should_trim_all_the_results = () => {
+            result[0].ShouldEqual("Tag 1");
+            result[1].ShouldEqual("Tag 2");
+            result[2].ShouldEqual("Tag 3");
+            result[3].ShouldEqual("Tag 4");
+            result[4].ShouldEqual("Tag 5");
+        };
     }
 }

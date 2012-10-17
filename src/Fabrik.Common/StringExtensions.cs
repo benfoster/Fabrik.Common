@@ -125,8 +125,7 @@ namespace Fabrik.Common
         public static IEnumerable<string> SplitAndTrim(this string value, params char[] separators)
         {
             Ensure.Argument.NotNull(value, "source");
-
-            return value.Split(separators, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim());
+            return value.Trim().Split(separators, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim());
         }
 
         private static string RemoveAccent(string value)
