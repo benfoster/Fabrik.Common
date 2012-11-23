@@ -32,6 +32,28 @@ namespace Fabrik.Common.WebAPI.Specs
                 => response.Content.Headers.ContentEncoding.ShouldContain("gzip");
         }
 
+        public class When_the_request_contains_multiple_valid_encoding_types
+        {
+            Establish ctx = () =>
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/");
+                request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip", quality: 0.5));
+                request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate")); // will default to 1.0
+                handler = new CompressionHandler();
+            };
+
+            Because of = () =>
+            {
+                response = TestHelper.InvokeMessageHandler(request, handler).Result;
+            };
+
+            It Should_compress_the_response = ()
+                => response.Content.ShouldBeOfType(typeof(CompressedContent));
+
+            It Should_use_the_encoding_with_the_highest_quality = ()
+                => response.Content.Headers.ContentEncoding.ShouldContain("deflate");
+        }
+
         public class When_the_request_contains_an_invalid_encoding_type
         {
             Establish ctx = () =>
