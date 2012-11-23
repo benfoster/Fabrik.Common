@@ -27,7 +27,8 @@ namespace Fabrik.Common.WebAPI
             {
                 var encoding = request.Headers.AcceptEncoding.First();
 
-                var compressor = Compressors.FirstOrDefault(c => c.EncodingType.Equals(encoding.Value, StringComparison.InvariantCultureIgnoreCase));
+                var compressor = Compressors.FirstOrDefault(c => 
+                    ((encoding.Quality ?? 1.0) > 0) && c.EncodingType.Equals(encoding.Value, StringComparison.InvariantCultureIgnoreCase));
 
                 if (compressor != null)
                 {

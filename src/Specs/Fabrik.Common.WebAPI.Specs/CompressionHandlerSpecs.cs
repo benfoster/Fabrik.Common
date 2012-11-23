@@ -46,7 +46,7 @@ namespace Fabrik.Common.WebAPI.Specs
                 response = TestHelper.InvokeMessageHandler(request, handler).Result;
             };
             
-            It Should_return_the_original_content = ()
+            It Should_not_compress_the_content = ()
                  => response.Content.ShouldBeOfType(typeof(StringContent));
         }
 
@@ -63,7 +63,25 @@ namespace Fabrik.Common.WebAPI.Specs
                 response = TestHelper.InvokeMessageHandler(request, handler).Result;
             };
 
-            It Should_return_the_original_content = ()
+            It Should_not_compress_the_content = ()
+                 => response.Content.ShouldBeOfType(typeof(StringContent));
+        }
+
+        public class When_the_request_has_encoding_quality_set_to_0
+        {
+            Establish ctx = () =>
+            {
+                request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/");
+                request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip", quality: 0));
+                handler = new CompressionHandler();
+            };
+
+            Because of = () =>
+            {
+                response = TestHelper.InvokeMessageHandler(request, handler).Result;
+            };
+
+            It Should_not_compress_the_content = ()
                  => response.Content.ShouldBeOfType(typeof(StringContent));
         }
     }
