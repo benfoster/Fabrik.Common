@@ -14,13 +14,13 @@ namespace Fabrik.Common.Web
             this.partialViewPrefix = partialViewPrefix;
         }
         
-        public bool IsSatisfiedBy(ControllerContext controllerContext)
+        public virtual bool IsSatisfiedBy(ControllerContext controllerContext)
         {
             return controllerContext.HttpContext.Request.AcceptTypes.Contains("text/html")
                 && (controllerContext.HttpContext.Request.IsAjaxRequest() || controllerContext.IsChildAction);
         }
 
-        public ActionResult CreateResult(ControllerContext controllerContext, ActionResult currentResult)
+        public virtual ActionResult CreateResult(ControllerContext controllerContext, ActionResult currentResult)
         {
             var viewResult = currentResult as ViewResult;
 
