@@ -66,6 +66,24 @@ namespace Fabrik.Common.Web
         }
 
         /// <summary>
+        /// A helper for performing conditional IF logic within Razor
+        /// </summary>
+        public static TResult If<TResult>(this HtmlHelper html, bool condition, Func<TResult> trueFunc)
+        {
+            return html.IfElse(condition, trueFunc, () => default(TResult));
+        }
+
+        /// <summary>
+        /// A helper for performing conditional IF ELSE logic within Razor
+        /// </summary>
+        public static TResult IfElse<TResult>(this HtmlHelper html, bool criteria, Func<TResult> trueFunc, Func<TResult> falseFunc)
+        {
+            Ensure.Argument.NotNull(trueFunc, "trueFunc");
+            Ensure.Argument.NotNull(falseFunc, "falseFunc");
+            return criteria ? trueFunc() : falseFunc();
+        }
+
+        /// <summary>
         /// Returns an image element for the specified <paramref name="src"/>
         /// </summary>
         public static MvcHtmlString Image(this HtmlHelper html, string src, string alt = "", object htmlAttributes = null)
