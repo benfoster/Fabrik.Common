@@ -10,7 +10,7 @@ namespace Fabrik.Common.Web
     /// </remarks>
     public abstract class HttpModuleBase : IHttpModule
     {
-        public void Init(HttpApplication context)
+        public virtual void Init(HttpApplication context)
         {
             context.BeginRequest += (sender, e) => OnBeginRequest(new HttpContextWrapper(((HttpApplication)sender).Context));
             context.Error += (sender, e) => OnError(new HttpContextWrapper(((HttpApplication)sender).Context));
