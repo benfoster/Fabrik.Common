@@ -8,6 +8,8 @@ namespace Fabrik.Common.WebAPI
     /// </summary>
     public abstract class ObjectContentResponseEnricher<T> : IResponseEnricher
     {
+        private HttpResponseMessage httpResponse;
+        
         public virtual bool CanEnrich(Type contentType)
         {
             return contentType == typeof(T);
@@ -29,7 +31,13 @@ namespace Fabrik.Common.WebAPI
                 Enrich(content);
             }
 
+            httpResponse = response;
             return response;
+        }
+
+        protected HttpResponseMessage HttpResponse
+        {
+            get { return httpResponse; }
         }
     }
 }
