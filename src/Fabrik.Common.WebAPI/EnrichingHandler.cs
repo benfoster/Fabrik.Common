@@ -7,17 +7,13 @@ namespace Fabrik.Common.WebAPI
 {
     public class EnrichingHandler : DelegatingHandler
     {
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            return base.SendAsync(request, cancellationToken)
-                .ContinueWith(task =>
-                {
-                    var response = task.Result;
-                    var enrichers = request.GetConfiguration().GetResponseEnrichers();
+            HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+            var enrichers = request.GetConfiguration().GetResponseEnrichers();
 
-                    return enrichers.Where(e => e.CanEnrich(response))
-                        .Aggregate(response, (resp, enricher) => enricher.Enrich(response));
-                });
+            return enrichers.Where(e => e.CanEnrich(response))
+                .Aggregate(response, (resp, enricher) => enricher.Enrich(response));
         }
     }
 }
