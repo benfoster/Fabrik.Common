@@ -69,6 +69,7 @@
     <Compile Include="LowercaseRouteSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DynamicHttpContext.cs" />
+    <Compile Include="SlugRouteConstraintSpecs.cs" />
     <Compile Include="SitemapResultSpecs.cs" />
     <Compile Include="ValidateModelStateAttributeSpecs.cs" />
     <Compile Include="DefaultViewFactorySpecs.cs" />

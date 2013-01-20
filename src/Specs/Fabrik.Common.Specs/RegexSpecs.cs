@@ -53,6 +53,15 @@ namespace Fabrik.Common.Specs
             It Should_not_match = ()
                 => result.ShouldBeFalse();
         }
+
+        public class When_the_string_is_empty
+        {
+            Because of = () => 
+                result = RegexUtils.SlugRegex.IsMatch("");
+            
+            It Should_not_match = () 
+                => result.ShouldBeFalse();
+        }
     }
 
     [Subject(typeof(RegexUtils), "SlugWithSegmentsRegex")]
@@ -86,6 +95,15 @@ namespace Fabrik.Common.Specs
                 => result = RegexUtils.SlugWithSegmentsRegex.IsMatch("this/is//a/test");
 
             It Should_not_match = ()
+                => result.ShouldBeFalse();
+        }
+
+        public class When_the_string_is_empty
+        {
+            Because of = () => result = 
+                RegexUtils.SlugWithSegmentsRegex.IsMatch("");
+            
+            It Should_not_match = () 
                 => result.ShouldBeFalse();
         }
     }
