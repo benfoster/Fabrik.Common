@@ -35,9 +35,9 @@ namespace Fabrik.Common.WebAPI
             return response;
         }
 
-        protected HttpResponseMessage HttpResponse
+        protected HttpRequestMessage Request
         {
-            get { return httpResponse; }
+            get { return httpResponse.RequestMessage; }
         }
     }
 }
