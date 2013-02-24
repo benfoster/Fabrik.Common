@@ -60,6 +60,7 @@
     <Compile Include="ActionResults\RssFeedResult.cs" />
     <Compile Include="ActionResults\SitemapResult.cs" />
     <Compile Include="ActionResults\XmlResult.cs" />
+    <Compile Include="AlertType.cs" />
     <Compile Include="AttributeMetadataPlugin.cs" />
     <Compile Include="DefaultViewFactory.cs" />
     <Compile Include="Filters\InjectPageMetadataAttribute.cs" />

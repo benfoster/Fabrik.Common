@@ -1,6 +1,8 @@
-﻿
+﻿using System;
+
 namespace Fabrik.Common.Web
 {
+    [Serializable]
     public class Alert
     {
         public string Title { get; set; }
@@ -15,13 +17,5 @@ namespace Fabrik.Common.Web
         }
 
         public Alert() { }
-    }
-
-    public enum AlertType
-    {
-        Info,
-        Success,
-        Warning,
-        Error
     }
 }
