@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiKeyAuthenticationHeaderValue.cs" />
     <Compile Include="AtomPub\AtomPubCategoryMediaTypeFormatter.cs" />
     <Compile Include="AtomPub\AtomExtensions.cs" />
     <Compile Include="AtomPub\AtomPubMediaTypeFormatter.cs" />
@@ -69,11 +70,13 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BadRequestException.cs" />
+    <Compile Include="BasicAuthenticationHeaderValue.cs" />
     <Compile Include="CompressedContent.cs" />
     <Compile Include="CompressionHandler.cs" />
     <Compile Include="Compressor.cs" />
     <Compile Include="DecompressionHandler.cs" />
     <Compile Include="DeflateCompressor.cs" />
+    <Compile Include="DependencyResolverExtensions.cs" />
     <Compile Include="EnrichingHandler.cs" />
     <Compile Include="GZipCompressor.cs" />
     <Compile Include="HttpConfigurationExtensions.cs" />
@@ -81,6 +84,7 @@
     <Compile Include="ICompressor.cs" />
     <Compile Include="IResponseEnricher.cs" />
     <Compile Include="JsonpMediaTypeFormatter.cs" />
+    <Compile Include="MultipartFormDataContentExtensions.cs" />
     <Compile Include="NotFoundException.cs" />
     <Compile Include="ObjectContentResponseEnricher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +100,8 @@
     <Compile Include="Links\RelatedLink.cs" />
     <Compile Include="Links\SelfLink.cs" />
     <Compile Include="AtomPub\PublicationCategoriesDocument.cs" />
+    <Compile Include="RequireHttpsHandler.cs" />
+    <Compile Include="SessionTokenAuthenticationHeaderValue.cs" />
     <Compile Include="UriExtensions.cs" />
     <Compile Include="ValidateModelStateAttribute.cs" />
   </ItemGroup>

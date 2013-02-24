@@ -128,6 +128,32 @@ namespace Fabrik.Common
             return value.Trim().Split(separators, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim());
         }
 
+        /// <summary>
+        /// Checks if the <paramref name="source"/> contains the <paramref name="input"/> based on the provided <paramref name="comparison"/> rules.
+        /// </summary>
+        public static bool Contains(this string source, string input, StringComparison comparison)
+        {
+            return source.IndexOf(input, comparison) >= 0;
+        }
+
+        /// <summary>
+        /// Limits the length of the <paramref name="source"/> to the specified <paramref name="maxLength"/>.
+        /// </summary>
+        public static string Limit(this string source, int maxLength, string suffix = null)
+        {
+            if (suffix.IsNotNullOrEmpty())
+            {
+                maxLength = maxLength - suffix.Length;
+            }
+
+            if (source.Length <= maxLength)
+            {
+                return source;
+            }
+
+            return string.Concat(source.Substring(0, maxLength).Trim(), suffix ?? string.Empty);
+        }
+
         private static string RemoveAccent(string value)
         {
             var bytes = Encoding.GetEncoding("Cyrillic").GetBytes(value);
