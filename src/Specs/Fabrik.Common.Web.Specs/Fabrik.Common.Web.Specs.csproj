@@ -67,6 +67,7 @@
     <Compile Include="HtmlHelperExtensionsSpecs.cs" />
     <Compile Include="HttpStatusCodeViewResultSpecs.cs" />
     <Compile Include="LowercaseRouteSpecs.cs" />
+    <Compile Include="MediaTypeViewResultFormatterSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DynamicHttpContext.cs" />
     <Compile Include="SlugRouteConstraintSpecs.cs" />

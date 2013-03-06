@@ -28,7 +28,7 @@ namespace Fabrik.Common.Web
             Ensure.Argument.NotNull(controllerContext, "controllerContext");
 
             var acceptTypes = controllerContext.HttpContext.Request.AcceptTypes;
-            return acceptTypes.Intersect(supportedMediaTypes).Any();
+            return acceptTypes != null && acceptTypes.Intersect(supportedMediaTypes).Any();
         }
 
         public abstract ActionResult CreateResult(ControllerContext controllerContext);
