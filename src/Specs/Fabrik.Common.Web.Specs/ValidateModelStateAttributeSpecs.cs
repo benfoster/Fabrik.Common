@@ -72,7 +72,7 @@ namespace Fabrik.Common.Web.Specs
                 ((HttpStatusCodeResult)actionExecutingContext.Result).StatusCode.ShouldEqual(400);
 
             It Should_serialize_the_modelstate_errors_into_JSON = () => 
-                ((HttpStatusCodeResult)actionExecutingContext.Result).StatusDescription.ShouldEqual(@"{""test"":""error""}");
+                ((HttpStatusCodeResult)actionExecutingContext.Result).StatusDescription.ShouldEqual(@"{""test"":[""error""]}");
         }
     }  
 }
