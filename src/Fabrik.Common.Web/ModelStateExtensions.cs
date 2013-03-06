@@ -7,17 +7,14 @@ namespace Fabrik.Common.Web
     public static class ModelStateExtensions
     {
         /// <summary>
-        /// Converts the <paramref name="modelState"/> to a string dictionary that can be easily serialized.
+        /// Converts the <paramref name="modelState"/> to a dictionary that can be easily serialized.
         /// </summary>
-        public static IDictionary<string, string> ToSerializableDictionary(this ModelStateDictionary modelState)
+        public static IDictionary<string, string[]> ToSerializableDictionary(this ModelStateDictionary modelState)
         {
-            Ensure.Argument.NotNull(modelState, "modelState");
-
-            var dictionary = (from k in modelState.Keys
-                              from e in modelState[k].Errors
-                              select new { k, e.ErrorMessage }).ToDictionary(x => x.k, x => x.ErrorMessage);
-
-            return dictionary;
+            return modelState.Where(x => x.Value.Errors.Any()).ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+            );
         }
     }
 }
