@@ -18,7 +18,9 @@ namespace Fabrik.Common.Web
         
         public virtual bool IsSatisfiedBy(ControllerContext controllerContext)
         {
-            return controllerContext.HttpContext.Request.AcceptTypes.Contains("text/html")
+            var acceptTypes = controllerContext.HttpContext.Request.AcceptTypes ?? new string[0];                       
+            
+            return acceptTypes.Contains("text/html")
                 && (controllerContext.HttpContext.Request.IsAjaxRequest() || controllerContext.IsChildAction);
         }
 
