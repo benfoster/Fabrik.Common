@@ -10,7 +10,12 @@
     <description>$description$</description>
     <licenseUrl>https://raw.github.com/benfoster/Fabrik.Common/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/benfoster/Fabrik.Common</projectUrl>
-    <copyright>Copyright 2012 Ben Foster</copyright>
-    <tags>fabrik dotnet aspnetmvc markdown cms</tags>
+    <copyright>Copyright 2013 Ben Foster</copyright>
+    <tags>fabrik logging</tags>
+    <dependencies>
+      <dependency id="Fabrik.Common" />
+      <dependency id="Fabrik.Common.Logging" />
+      <dependency id="NLog" />
+    </dependencies>
   </metadata>
 </package>

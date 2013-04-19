@@ -37,6 +37,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{843B4D
 		src\Common\CommonAssemblyInfo.cs = src\Common\CommonAssemblyInfo.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Logging", "src\Fabrik.Common.Logging\Fabrik.Common.Logging.csproj", "{595DDF23-635E-42EB-ADBD-72FE0DA57E04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Logging.NLog", "src\Fabrik.Common.Logging.NLog\Fabrik.Common.Logging.NLog.csproj", "{35E0B3B4-51D9-4155-9BAB-C2D9D48E0F9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,14 @@ Global
 		{FBF23602-7B10-40CB-A6E4-8B369541FA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF23602-7B10-40CB-A6E4-8B369541FA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF23602-7B10-40CB-A6E4-8B369541FA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595DDF23-635E-42EB-ADBD-72FE0DA57E04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595DDF23-635E-42EB-ADBD-72FE0DA57E04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595DDF23-635E-42EB-ADBD-72FE0DA57E04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595DDF23-635E-42EB-ADBD-72FE0DA57E04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35E0B3B4-51D9-4155-9BAB-C2D9D48E0F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35E0B3B4-51D9-4155-9BAB-C2D9D48E0F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35E0B3B4-51D9-4155-9BAB-C2D9D48E0F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35E0B3B4-51D9-4155-9BAB-C2D9D48E0F9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

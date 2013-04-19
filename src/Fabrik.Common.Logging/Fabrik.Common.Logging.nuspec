@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <licenseUrl>https://raw.github.com/benfoster/Fabrik.Common/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/benfoster/Fabrik.Common</projectUrl>
+    <copyright>Copyright 2013 Ben Foster</copyright>
+    <tags>fabrik logging</tags>
+  </metadata>
+</package>
