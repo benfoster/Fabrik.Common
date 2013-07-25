@@ -10,7 +10,7 @@ namespace Fabrik.Common
     {
         public abstract override int GetHashCode();
 
-        public bool Equals(T other)
+        public virtual bool Equals(T other)
         {
             if (other == null)
                 return false;
