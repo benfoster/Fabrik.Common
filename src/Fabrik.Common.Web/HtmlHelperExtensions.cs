@@ -108,17 +108,16 @@ namespace Fabrik.Common.Web
         public static MvcHtmlString EnumDropDownListFor<TModel, TEnum>(this HtmlHelper<TModel> html, Expression<Func<TModel, TEnum>> expression)
         {
             Ensure.Argument.Is(typeof(TEnum).IsEnum, "Must be a valid Enum type.");
-            
-            var metadata = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
+            return html.DropDownListFor(expression, GetEnumSelectList<TEnum>());
+        }
 
-            var values = from v in Enum.GetValues(typeof(TEnum)).Cast<TEnum>()
-                         select new {
-                            Text = v.ToString().SeparatePascalCase(),
-                            Value = v.ToString()
-                         };
-
-            var selectList = new SelectList(values, "Value", "Text");
-            return html.DropDownListFor(expression, selectList);
+        /// <summary>
+        /// Creates a checkbox list for an Enum property
+        /// </summary>
+        public static MvcHtmlString EnumCheckBoxListFor<TModel, TEnum>(this HtmlHelper<TModel> html, Expression<Func<TModel, IEnumerable<TEnum>>> expression)
+        {
+            Ensure.Argument.Is(typeof(TEnum).IsEnum, "Must be a valid Enum type.");
+            return html.CheckBoxListFor(expression, GetEnumSelectList<TEnum>());
         }
 
         /// <summary>
@@ -132,6 +131,7 @@ namespace Fabrik.Common.Web
             items = GetCheckboxListWithDefaultValues(metaData.Model, items);
             return htmlHelper.CheckBoxList(listName, items, htmlAttributes);
         }
+
 
         /// <summary>
         /// Returns a checkbox for each of the provided <paramref name="items"/>.
@@ -160,28 +160,6 @@ namespace Fabrik.Common.Web
             return new MvcHtmlString(container.ToString());
         }
 
-        private static IEnumerable<SelectListItem> GetCheckboxListWithDefaultValues(object defaultValues, IEnumerable<SelectListItem> selectList)
-        {
-            var defaultValuesList = defaultValues as IEnumerable;
-
-            if (defaultValuesList == null)
-                return selectList;
-
-            IEnumerable<string> values = from object value in defaultValuesList
-                                         select Convert.ToString(value, CultureInfo.CurrentCulture);
-            
-            var selectedValues = new HashSet<string>(values, StringComparer.OrdinalIgnoreCase);
-            var newSelectList = new List<SelectListItem>();
-
-            selectList.ForEach(item =>
-            {
-                item.Selected = (item.Value != null) ? selectedValues.Contains(item.Value) : selectedValues.Contains(item.Text);
-                newSelectList.Add(item);
-            });
-
-            return newSelectList;
-        }
-
         /// <summary>
         /// A helper for wiring up Twitter bootstrap's Typeahead component.
         /// </summary>
@@ -206,6 +184,40 @@ namespace Fabrik.Common.Web
                 return html.Partial("_Alert", alert);
 
             return MvcHtmlString.Empty;
+        }
+
+        private static IEnumerable<SelectListItem> GetEnumSelectList<TEnum>()
+        {
+            var values = from v in Enum.GetValues(typeof(TEnum)).Cast<TEnum>()
+                         select new
+                         {
+                             Text = v.ToString().SeparatePascalCase(),
+                             Value = v.ToString()
+                         };
+
+            return new SelectList(values, "Value", "Text");
+        }
+
+        private static IEnumerable<SelectListItem> GetCheckboxListWithDefaultValues(object defaultValues, IEnumerable<SelectListItem> selectList)
+        {
+            var defaultValuesList = defaultValues as IEnumerable;
+
+            if (defaultValuesList == null)
+                return selectList;
+
+            IEnumerable<string> values = from object value in defaultValuesList
+                                         select Convert.ToString(value, CultureInfo.CurrentCulture);
+
+            var selectedValues = new HashSet<string>(values, StringComparer.OrdinalIgnoreCase);
+            var newSelectList = new List<SelectListItem>();
+
+            selectList.ForEach(item =>
+            {
+                item.Selected = (item.Value != null) ? selectedValues.Contains(item.Value) : selectedValues.Contains(item.Text);
+                newSelectList.Add(item);
+            });
+
+            return newSelectList;
         }
     }
 }
