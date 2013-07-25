@@ -62,6 +62,15 @@ namespace Fabrik.Common.Specs
             It Should_not_match = () 
                 => result.ShouldBeFalse();
         }
+
+        public class When_the_string_contains_underscores
+        {
+            Because of = () =>
+                result = RegexUtils.SlugRegex.IsMatch("this_is_a_test");
+            
+            It Should_match = ()
+                => result.ShouldBeTrue();
+        }
     }
 
     [Subject(typeof(RegexUtils), "SlugWithSegmentsRegex")]
@@ -105,6 +114,15 @@ namespace Fabrik.Common.Specs
             
             It Should_not_match = () 
                 => result.ShouldBeFalse();
+        }
+
+        public class When_the_string_contains_underscores
+        {
+            Because of = () =>
+                result = RegexUtils.SlugWithSegmentsRegex.IsMatch("this_is/a_test");
+
+            It Should_match = ()
+                => result.ShouldBeTrue();
         }
     }
 

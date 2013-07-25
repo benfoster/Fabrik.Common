@@ -8,13 +8,13 @@ namespace Fabrik.Common
         /// A regular expression for validating slugs.
         /// Does not allow leading or trailing hypens or whitespace
         /// </summary>
-        public static readonly Regex SlugRegex = new Regex(@"(^[a-z0-9])([a-z0-9-]+)*([a-z0-9])$");
+        public static readonly Regex SlugRegex = new Regex(@"(^[a-z0-9])([a-z0-9_-]+)*([a-z0-9])$");
 
         /// <summary>
         /// A regular expression for validating slugs with segments
         /// Does not allow leading or trailing hypens or whitespace
         /// </summary>
-        public static readonly Regex SlugWithSegmentsRegex = new Regex(@"^(?!-)[a-z0-9-]+(?<!-)(/(?!-)[a-z0-9-]+(?<!-))*$"); 
+        public static readonly Regex SlugWithSegmentsRegex = new Regex(@"^(?!-)[a-z0-9_-]+(?<!-)(/(?!-)[a-z0-9_-]+(?<!-))*$"); 
 
         /// <summary>
         /// A regular expression for validating IPAddresses. Taken from http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
