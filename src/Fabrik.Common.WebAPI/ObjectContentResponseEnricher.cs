@@ -25,13 +25,14 @@ namespace Fabrik.Common.WebAPI
 
         HttpResponseMessage IResponseEnricher.Enrich(HttpResponseMessage response)
         {
+            httpResponse = response;
+            
             T content;
             if (response.TryGetContentValue(out content))
             {
                 Enrich(content);
             }
 
-            httpResponse = response;
             return response;
         }
 
