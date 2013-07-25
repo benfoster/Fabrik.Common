@@ -108,7 +108,7 @@ namespace Fabrik.Common.Web
         public static MvcHtmlString EnumDropDownListFor<TModel, TEnum>(this HtmlHelper<TModel> html, Expression<Func<TModel, TEnum>> expression)
         {
             Ensure.Argument.Is(typeof(TEnum).IsEnum, "Must be a valid Enum type.");
-            return html.DropDownListFor(expression, GetEnumSelectList<TEnum>());
+            return html.DropDownListFor(expression, GetEnumSelectList<TEnum>(addEmptyItemIfNullable: true));
         }
 
         /// <summary>
@@ -186,16 +186,21 @@ namespace Fabrik.Common.Web
             return MvcHtmlString.Empty;
         }
 
-        private static IEnumerable<SelectListItem> GetEnumSelectList<TEnum>()
+        private static IEnumerable<SelectListItem> GetEnumSelectList<TEnum>(bool addEmptyItemIfNullable = false)
         {
-            var values = from v in Enum.GetValues(typeof(TEnum)).Cast<TEnum>()
-                         select new
-                         {
-                             Text = v.ToString().SeparatePascalCase(),
-                             Value = v.ToString()
-                         };
+            var selectListItems = (from v in Enum.GetValues(typeof(TEnum)).Cast<TEnum>()
+                                   select new SelectListItem
+                                   {
+                                       Text = v.ToString().SeparatePascalCase(),
+                                       Value = v.ToString()
+                                   }).ToList();
 
-            return new SelectList(values, "Value", "Text");
+            if (addEmptyItemIfNullable && Nullable.GetUnderlyingType(typeof(TEnum)) != null)
+            {
+                selectListItems.Insert(0, new SelectListItem { Text = "", Value = "" });
+            }
+
+            return selectListItems;
         }
 
         private static IEnumerable<SelectListItem> GetCheckboxListWithDefaultValues(object defaultValues, IEnumerable<SelectListItem> selectList)
