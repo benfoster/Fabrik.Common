@@ -85,6 +85,22 @@
             @Html.CheckBoxListFor(model => model.SubscriptionSources, Model.SubscriptionSourcesList)
             @Html.ValidationMessageFor(model => model.SubscriptionSources)
         </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TestEnum)
+        </div>
+        <div class="editor-field">
+            @Html.EnumDropDownListFor(model => model.TestEnum)
+            @Html.ValidationMessageFor(model => model.TestEnum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TestEnumNullable)
+        </div>
+        <div class="editor-field">
+            @Html.EnumDropDownListFor(model => model.TestEnumNullable, "Pick One", "0", new { @class = "foo" })
+            @Html.ValidationMessageFor(model => model.TestEnumNullable)
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>

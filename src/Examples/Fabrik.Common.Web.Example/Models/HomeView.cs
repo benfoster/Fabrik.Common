@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Fabrik.Common.Web.Example.Application;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
@@ -9,6 +10,8 @@ namespace Fabrik.Common.Web.Example.Models
     {
         public string Message { get; set; }
         public SelectList SubscriptionSourcesList { get; set; }
+        public TestEnum TestEnum { get; set; }
+        public TestEnum? TestEnumNullable { get; set; }
     }
 
     public class HomeCommand : IValidatableObject

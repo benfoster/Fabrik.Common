@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Application\HomeViewBuilder.cs" />
     <Compile Include="Application\ProductDetailsViewBuilder.cs" />
+    <Compile Include="Application\TestEnum.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />

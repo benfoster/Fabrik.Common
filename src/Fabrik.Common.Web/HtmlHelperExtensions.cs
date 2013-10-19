@@ -105,19 +105,17 @@ namespace Fabrik.Common.Web
         /// Creates a dropdown list for an Enum property
         /// </summary>
         /// <exception cref="System.ArgumentException">If the property type is not a valid Enum</exception>
-        public static MvcHtmlString EnumDropDownListFor<TModel, TEnum>(this HtmlHelper<TModel> html, Expression<Func<TModel, TEnum>> expression)
-        {
-            Ensure.Argument.Is(typeof(TEnum).IsEnum, "Must be a valid Enum type.");
-            return html.DropDownListFor(expression, GetEnumSelectList<TEnum>(addEmptyItemIfNullable: true));
+        public static MvcHtmlString EnumDropDownListFor<TModel, TEnum>(this HtmlHelper<TModel> html, Expression<Func<TModel, TEnum>> expression, string emptyItemText = "", string emptyItemValue = "", object htmlAttributes = null)
+        {     
+            return html.DropDownListFor(expression, GetEnumSelectList<TEnum>(true, emptyItemText, emptyItemValue), htmlAttributes);
         }
 
         /// <summary>
         /// Creates a checkbox list for an Enum property
         /// </summary>
-        public static MvcHtmlString EnumCheckBoxListFor<TModel, TEnum>(this HtmlHelper<TModel> html, Expression<Func<TModel, IEnumerable<TEnum>>> expression)
+        public static MvcHtmlString EnumCheckBoxListFor<TModel, TEnum>(this HtmlHelper<TModel> html, Expression<Func<TModel, IEnumerable<TEnum>>> expression, object htmlAttributes = null)
         {
-            Ensure.Argument.Is(typeof(TEnum).IsEnum, "Must be a valid Enum type.");
-            return html.CheckBoxListFor(expression, GetEnumSelectList<TEnum>());
+            return html.CheckBoxListFor(expression, GetEnumSelectList<TEnum>(), htmlAttributes);
         }
 
         /// <summary>
@@ -131,7 +129,6 @@ namespace Fabrik.Common.Web
             items = GetCheckboxListWithDefaultValues(metaData.Model, items);
             return htmlHelper.CheckBoxList(listName, items, htmlAttributes);
         }
-
 
         /// <summary>
         /// Returns a checkbox for each of the provided <paramref name="items"/>.
@@ -186,18 +183,35 @@ namespace Fabrik.Common.Web
             return MvcHtmlString.Empty;
         }
 
-        private static IEnumerable<SelectListItem> GetEnumSelectList<TEnum>(bool addEmptyItemIfNullable = false)
+        private static IEnumerable<SelectListItem> GetEnumSelectList<TEnum>(bool addEmptyItemForNullable = false, string emptyItemText = "", string emptyItemValue = "")
         {
-            var selectListItems = (from v in Enum.GetValues(typeof(TEnum)).Cast<TEnum>()
+            var enumType = typeof(TEnum);
+            var nullable = false;
+
+            if (!enumType.IsEnum)
+            {
+                enumType = Nullable.GetUnderlyingType(enumType);
+
+                if (enumType != null && enumType.IsEnum)
+                {
+                    nullable = true;
+                }
+                else 
+                {
+                    throw new ArgumentException("Not a valid Enum type");
+                }
+            }
+            
+            var selectListItems = (from v in Enum.GetValues(enumType).Cast<TEnum>()
                                    select new SelectListItem
                                    {
                                        Text = v.ToString().SeparatePascalCase(),
                                        Value = v.ToString()
                                    }).ToList();
 
-            if (addEmptyItemIfNullable && Nullable.GetUnderlyingType(typeof(TEnum)) != null)
+            if (nullable && addEmptyItemForNullable)
             {
-                selectListItems.Insert(0, new SelectListItem { Text = "", Value = "" });
+                selectListItems.Insert(0, new SelectListItem { Text = emptyItemText, Value = emptyItemValue });
             }
 
             return selectListItems;
