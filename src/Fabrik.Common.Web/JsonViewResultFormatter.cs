@@ -9,7 +9,7 @@ namespace Fabrik.Common.Web
             AddSupportedMediaType("application/json");
         }
         
-        public override ActionResult CreateResult(ControllerContext controllerContext)
+        public override ActionResult CreateResult(ControllerContext controllerContext, ActionResult currentResult)
         {
             var model = controllerContext.Controller.ViewData.Model;
 

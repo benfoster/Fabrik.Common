@@ -18,10 +18,7 @@ namespace Fabrik.Common.Web
             supportedMediaTypes.Add(mediaType);
         }
 
-        public virtual ActionResult CreateResult(ControllerContext controllerContext, ActionResult current)
-        {
-            return CreateResult(controllerContext);
-        }
+        public abstract ActionResult CreateResult(ControllerContext controllerContext, ActionResult current);
 
         public virtual bool IsSatisfiedBy(ControllerContext controllerContext)
         {
@@ -30,7 +27,5 @@ namespace Fabrik.Common.Web
             var acceptTypes = controllerContext.HttpContext.Request.AcceptTypes;
             return acceptTypes != null && acceptTypes.Intersect(supportedMediaTypes).Any();
         }
-
-        public abstract ActionResult CreateResult(ControllerContext controllerContext);
     }
 }
