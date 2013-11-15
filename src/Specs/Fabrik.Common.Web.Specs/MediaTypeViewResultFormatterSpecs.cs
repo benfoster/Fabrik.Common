@@ -34,7 +34,7 @@ namespace Fabrik.Common.Web.Specs
                 AddSupportedMediaType("application/test");
             }
             
-            public override ActionResult CreateResult(ControllerContext controllerContext)
+            public override ActionResult CreateResult(ControllerContext controllerContext, ActionResult currentResult)
             {
                 throw new NotImplementedException();
             }

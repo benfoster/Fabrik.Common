@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace Fabrik.Common.Web
 {
-    public class PartialViewResultFormatter : IViewResultFormatter
-    {
+    public class PartialViewResultFormatter : MediaTypeViewResultFormatter
+    {       
         private readonly string partialViewPrefix;
         private readonly string viewOverrideParameter;
 
@@ -14,17 +13,17 @@ namespace Fabrik.Common.Web
             Ensure.Argument.NotNull(partialViewPrefix, "partialViewPrefix");
             this.partialViewPrefix = partialViewPrefix;
             this.viewOverrideParameter = viewOverrideParameter;
+
+            AddSupportedMediaType("text/html");
         }
-        
-        public virtual bool IsSatisfiedBy(ControllerContext controllerContext)
+       
+        public override bool IsSatisfiedBy(ControllerContext controllerContext)
         {
-            var acceptTypes = controllerContext.HttpContext.Request.AcceptTypes ?? new string[0];                       
-            
-            return acceptTypes.Contains("text/html")
-                && (controllerContext.HttpContext.Request.IsAjaxRequest() || controllerContext.IsChildAction);
+            return base.IsSatisfiedBy(controllerContext)
+                && (controllerContext.HttpContext.Request.IsAjaxRequest() || controllerContext.IsChildAction);               
         }
 
-        public virtual ActionResult CreateResult(ControllerContext controllerContext, ActionResult currentResult)
+        public override ActionResult CreateResult(ControllerContext controllerContext, ActionResult currentResult)
         {
             var viewResult = currentResult as ViewResult;
 

@@ -12,7 +12,7 @@ namespace Fabrik.Common.Web
             AddSupportedMediaType("text/xml");
         }
 
-        public override ActionResult CreateResult(ControllerContext controllerContext)
+        public override ActionResult CreateResult(ControllerContext controllerContext, ActionResult currentResult)
         {
             var model = controllerContext.Controller.ViewData.Model;
 
