@@ -12,7 +12,7 @@ namespace Fabrik.Common.Web
         private readonly List<string> supportedMediaTypes = new List<string>();
         public IEnumerable<string> SupportedMediaTypes { get { return supportedMediaTypes; } }
 
-        protected void AddSupportedMediaType(string mediaType)
+        public void AddSupportedMediaType(string mediaType)
         {
             Ensure.Argument.NotNullOrEmpty(mediaType, "mediaType");
             supportedMediaTypes.Add(mediaType);
