@@ -1,9 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specs", "Specs", "{BAE286B9-2844-408D-B695-74FA154B4E8E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{2FDECC06-2FC5-4357-B974-705A8A85315E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{76D9DE8E-97B5-4B0A-BCEA-6874E4DE4492}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{843B4D7B-96BA-4D60-B6F1-31125F63AEEE}"
+	ProjectSection(SolutionItems) = preProject
+		src\Common\CommonAssemblyInfo.cs = src\Common\CommonAssemblyInfo.cs
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common", "src\Fabrik.Common\Fabrik.Common.csproj", "{13838B0B-4915-4C59-8AE9-F38A9DFD94F8}"
 EndProject
@@ -21,21 +35,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.CMS", "src\Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.WebAPI", "src\Fabrik.Common.WebAPI\Fabrik.Common.WebAPI.csproj", "{8918833B-FCEA-44D4-8AB1-667F7075152F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{76D9DE8E-97B5-4B0A-BCEA-6874E4DE4492}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.WebAPI.Specs", "src\Specs\Fabrik.Common.WebAPI.Specs\Fabrik.Common.WebAPI.Specs.csproj", "{883F921F-434F-4635-87E5-7A8CF15ADBB2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.WebAPI.AtomPubExample", "src\Examples\Fabrik.Common.WebAPI.AtomPubExample\Fabrik.Common.WebAPI.AtomPubExample.csproj", "{FBF23602-7B10-40CB-A6E4-8B369541FA94}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{843B4D7B-96BA-4D60-B6F1-31125F63AEEE}"
-	ProjectSection(SolutionItems) = preProject
-		src\Common\CommonAssemblyInfo.cs = src\Common\CommonAssemblyInfo.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik.Common.Logging", "src\Fabrik.Common.Logging\Fabrik.Common.Logging.csproj", "{595DDF23-635E-42EB-ADBD-72FE0DA57E04}"
 EndProject
