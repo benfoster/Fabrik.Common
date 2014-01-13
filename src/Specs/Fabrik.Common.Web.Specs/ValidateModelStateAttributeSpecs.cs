@@ -2,7 +2,6 @@
 using System.Web.Routing;
 using Machine.Fakes;
 using Machine.Specifications;
-using Machine.Specifications.Mvc;
 
 namespace Fabrik.Common.Web.Specs
 {  
@@ -52,8 +51,11 @@ namespace Fabrik.Common.Web.Specs
                 modelState["test"].Errors[0].ErrorMessage.ShouldEqual("error");
             };
 
-            It Should_perform_a_redirect_to_the_same_action = () =>
-                actionExecutingContext.Result.ShouldBeARedirectToRoute().And().ActionName().ShouldEqual("index");
+            It Should_perform_a_redirect_to_the_same_action = () => {
+                var redirect = actionExecutingContext.Result as RedirectToRouteResult;
+                redirect.ShouldNotBeNull();
+                redirect.RouteValues["action"].ShouldEqual("index");
+            };
         }
 
         public class When_the_modelstate_is_invalid_and_it_is_an_AJAX_request
