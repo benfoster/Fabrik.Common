@@ -40,7 +40,7 @@
   <Target Name="Specs" DependsOnTargets="Compile">
     <PropertyGroup>
       <MSpecAssemblies>$(TestProjOutputs.Replace(";", " "))</MSpecAssemblies>
-      <MSpecCommand>$(SolutionDir)\packages\Machine.Specifications.0.5.8\tools\mspec-clr4.exe $(MSpecAssemblies)</MSpecCommand>
+      <MSpecCommand>$(SolutionDir)\packages\Machine.Specifications.0.6.2\tools\mspec-clr4.exe $(MSpecAssemblies)</MSpecCommand>
     </PropertyGroup>
     <Message Importance="high" Text="Running Specs with this command: $(MSpecCommand)"/>
     <Exec Command="$(MSpecCommand)" />
