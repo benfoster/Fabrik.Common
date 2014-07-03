@@ -27,10 +27,10 @@ namespace Fabrik.Common.WebAPI.AtomPub
         /// <summary>
         /// The content of the publication.
         /// </summary>
-        string Content { get; }
+        object Content { get; }
 
         /// <summary>
-        /// The type of content. Either "text", "html", "xhtml" or a valid MIME media type.
+        /// The type of content. Either "text", "html", "xhtml", "xml" or a valid MIME media type.
         /// </summary>
         string ContentType { get; }
         

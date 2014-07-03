@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
+using System.Xml;
 
 namespace Fabrik.Common.WebAPI.AtomPub
 {
@@ -66,12 +67,34 @@ namespace Fabrik.Common.WebAPI.AtomPub
             command.PublishDate = GetPublishDate(item.PublishDate);
         }
 
-        private static SyndicationContent GetSyndicationContent(string content, string contentType)
+        private static SyndicationContent GetSyndicationContent(object content, string contentType)
         {
-            if (content.IsNullOrEmpty() || contentType.ToLowerInvariant() == PublicationContentTypes.Text)
-                return SyndicationContent.CreatePlaintextContent(content ?? string.Empty);
-
-            return SyndicationContent.CreateHtmlContent(content);
+            if (contentType.ToLowerInvariant() == PublicationContentTypes.Text)
+            {
+                return SyndicationContent.CreatePlaintextContent((string) content ?? string.Empty);
+            }
+            
+            if (contentType.ToLowerInvariant() == PublicationContentTypes.HTML)
+            {
+                return SyndicationContent.CreateHtmlContent((string) content ?? string.Empty);
+            }
+            
+            if (contentType.ToLowerInvariant() == PublicationContentTypes.XHTML)
+            {
+                return SyndicationContent.CreateXhtmlContent((string) content ?? string.Empty);                                
+            }
+            
+            if (contentType.ToLowerInvariant() == PublicationContentTypes.XML)
+            {
+                return SyndicationContent.CreateXmlContent(content);                
+            }
+            
+            if (content is string && ((string) content).IsNullOrEmpty())
+            {
+                return SyndicationContent.CreatePlaintextContent(string.Empty);
+            }
+            
+            return SyndicationContent.CreateHtmlContent(content.ToString());
         }
 
         public static DateTime GetPublishDate(DateTimeOffset syndicationDate)
