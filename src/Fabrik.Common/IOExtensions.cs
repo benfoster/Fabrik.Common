@@ -16,6 +16,9 @@ namespace Fabrik.Common
         {
             Ensure.Argument.NotNull(stream, "stream");
             
+            if (stream is Memory)
+                return (stream as Memory).ToArray();
+            
             using (var ms = new MemoryStream())
             {
                 stream.CopyTo(ms);
